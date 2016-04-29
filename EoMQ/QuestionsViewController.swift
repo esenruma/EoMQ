@@ -195,9 +195,11 @@ class QuestionsViewController: UIViewController {
     
 // ---------------------------------------
     func getRandomQuestion() {
+        
         // RN No.
-        var randomNumber = arc4random() % 5
-        randomNumber += 1
+        // var randomNumber = arc4random() % 5 // replaced as _uniform=better generator
+        var randomNumber = arc4random_uniform(6) // 0-5
+        randomNumber += 1 // 1-5
         let randomNoString = String(randomNumber)
         
         // ** Fetch

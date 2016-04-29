@@ -150,8 +150,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u2W-ky-LBz">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2W-ky-LBz">
+                                <rect key="frame" x="-4" y="20" width="383" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="yRe-sL-6qq"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Settings" id="rQu-La-uqz">
                                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="GaN-CV-uEe">
@@ -162,11 +165,69 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkV-AP-FVo">
+                                <rect key="frame" x="36" y="124" width="303" height="152"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="152" id="WbJ-f6-TGW"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="fa7-Ys-0TU" id="VKP-04-fvp"/>
+                                    <outlet property="delegate" destination="fa7-Ys-0TU" id="vcM-ym-HaF"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an option for Random Selections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMP-Xs-scg">
+                                <rect key="frame" x="16" y="84" width="343" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HHf-MT-R3Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results of Selections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2T-a2-egy">
+                                <rect key="frame" x="16" y="324" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="L5A-fg-Be6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5tX-ZP-sVO">
+                                <rect key="frame" x="147" y="284" width="82" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ly5-yG-hzf"/>
+                                    <constraint firstAttribute="width" constant="82" id="Yfk-TI-fk7"/>
+                                </constraints>
+                                <state key="normal" title="Select"/>
+                                <connections>
+                                    <action selector="selectButton:" destination="fa7-Ys-0TU" eventType="touchUpInside" id="WO8-UX-VcV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="u2W-ky-LBz" secondAttribute="trailing" constant="-20" id="7OO-Zb-cpK"/>
+                            <constraint firstItem="sMP-Xs-scg" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" id="9O0-YR-zua"/>
+                            <constraint firstItem="r2T-a2-egy" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" id="FaG-sg-7vQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xkV-AP-FVo" secondAttribute="trailing" constant="20" id="I3H-Rd-0Tg"/>
+                            <constraint firstItem="xkV-AP-FVo" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" constant="20" id="Ko6-p3-87P"/>
+                            <constraint firstItem="5tX-ZP-sVO" firstAttribute="top" secondItem="xkV-AP-FVo" secondAttribute="bottom" constant="8" id="Lzq-FV-UBk"/>
+                            <constraint firstItem="u2W-ky-LBz" firstAttribute="top" secondItem="aGk-xv-DJz" secondAttribute="bottom" id="SCH-tQ-Ozs"/>
+                            <constraint firstItem="r2T-a2-egy" firstAttribute="trailing" secondItem="jQC-AH-5Jr" secondAttribute="trailingMargin" id="Tsg-fN-Yfn"/>
+                            <constraint firstItem="xkV-AP-FVo" firstAttribute="top" secondItem="sMP-Xs-scg" secondAttribute="bottom" constant="10" id="UZe-UX-6em"/>
+                            <constraint firstItem="5tX-ZP-sVO" firstAttribute="centerX" secondItem="jQC-AH-5Jr" secondAttribute="centerX" id="bPP-SG-J5R"/>
+                            <constraint firstItem="sMP-Xs-scg" firstAttribute="trailing" secondItem="jQC-AH-5Jr" secondAttribute="trailingMargin" id="nZN-Tf-rtb"/>
+                            <constraint firstItem="sMP-Xs-scg" firstAttribute="top" secondItem="u2W-ky-LBz" secondAttribute="bottom" constant="20" id="o0D-H5-4ND"/>
+                            <constraint firstItem="r2T-a2-egy" firstAttribute="top" secondItem="5tX-ZP-sVO" secondAttribute="bottom" constant="10" id="tna-tF-pVt"/>
+                            <constraint firstItem="u2W-ky-LBz" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" constant="-20" id="wU8-Gb-KAI"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="pickerView" destination="xkV-AP-FVo" id="1y6-8T-lse"/>
+                        <outlet property="resultsLabel" destination="r2T-a2-egy" id="gsc-9N-8kF"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="settingToHome" modalTransitionStyle="crossDissolve" id="2Fy-Od-BG5"/>
                     </connections>
                 </viewController>
@@ -560,6 +621,6 @@
         <image name="no Image Text" width="120" height="105"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ekG-ak-5DI"/>
+        <segue reference="2Fy-Od-BG5"/>
     </inferredMetricsTieBreakers>
 </document>
