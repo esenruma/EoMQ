@@ -40,7 +40,7 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Khz-yv-Xme">
                                 <rect key="frame" x="70" y="164" width="236" height="453"/>
-                                <color key="backgroundColor" red="0.98823529409999999" green="0.81960784310000001" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="236" id="sjw-TQ-Osg"/>
                                 </constraints>
@@ -279,17 +279,6 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHc-Xw-z6Q">
-                                        <rect key="frame" x="299" y="550" width="63" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="63" id="Bbf-k8-gAa"/>
-                                            <constraint firstAttribute="height" constant="39" id="agx-n0-Jwe"/>
-                                        </constraints>
-                                        <state key="normal" title="Next"/>
-                                        <connections>
-                                            <action selector="nextQuestionButton:" destination="D41-2I-TvR" eventType="touchUpInside" id="5nQ-tQ-yLE"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-am-JWW">
                                         <rect key="frame" x="18" y="550" width="63" height="39"/>
                                         <constraints>
@@ -310,6 +299,17 @@
                                         <state key="normal" title="Option B"/>
                                         <connections>
                                             <action selector="answerBAction:" destination="D41-2I-TvR" eventType="touchUpInside" id="xx3-Hh-0hz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHc-Xw-z6Q">
+                                        <rect key="frame" x="278" y="550" width="84" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="84" id="Bbf-k8-gAa"/>
+                                            <constraint firstAttribute="height" constant="39" id="agx-n0-Jwe"/>
+                                        </constraints>
+                                        <state key="normal" title="Skip or Next"/>
+                                        <connections>
+                                            <action selector="nextQuestionButton:" destination="D41-2I-TvR" eventType="touchUpInside" id="5nQ-tQ-yLE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -560,6 +560,6 @@
         <image name="no Image Text" width="120" height="105"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jEq-Zq-hvg"/>
+        <segue reference="ekG-ak-5DI"/>
     </inferredMetricsTieBreakers>
 </document>

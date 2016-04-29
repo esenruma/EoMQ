@@ -70,7 +70,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
 // ---------------------------------------
     @IBAction func saveResultsButton(sender: AnyObject) {
         // Save to CoreD
-        if self.nameTextLabel == "" {
+        if self.nameTextLabel.text == "" {
             noNameAlert()
             
         } else {
@@ -112,7 +112,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     
 // ---------------------------------------
     func noNameAlert() {
-        let alert = UIAlertController(title: "ALERT", message: "Please enter a Name & Photo", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "ALERT", message: "Please enter a Name", preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel) {
             UIAlertAction in
             
