@@ -48,6 +48,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            context.deleteObject(self.resultsList[indexPath.row]) // Always before as CoreD
+            self.resultsList.removeAtIndex(indexPath.row)
+            
+                do {
+                    try context.save()
+                } catch {
+                    print("Error unable to save Deletion")
+                }
+        } // end IF EditingStyle
+        
+        self.tableView.reloadData()
+    }
+    
 // ---------------------------------------
     override func viewWillAppear(animated: Bool) {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -58,17 +78,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         do {
             let results = try context.executeFetchRequest(request)
-            
             if results.count > 0 {
-                
                 self.resultsList = results as! [Results]
             }
-            
-            
         } catch {
             print("Unable to Fetch 'Results' Entity")
         }
         
+        // Refresh TAble
+        self.tableView.reloadData()
         
     }
     
