@@ -185,10 +185,10 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results of Selections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2T-a2-egy">
-                                <rect key="frame" x="16" y="324" width="343" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results of Selections" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2T-a2-egy">
+                                <rect key="frame" x="12" y="324" width="351" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="L5A-fg-Be6"/>
+                                    <constraint firstAttribute="height" constant="51" id="L5A-fg-Be6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -210,12 +210,12 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="u2W-ky-LBz" secondAttribute="trailing" constant="-20" id="7OO-Zb-cpK"/>
                             <constraint firstItem="sMP-Xs-scg" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" id="9O0-YR-zua"/>
-                            <constraint firstItem="r2T-a2-egy" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" id="FaG-sg-7vQ"/>
+                            <constraint firstItem="r2T-a2-egy" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" constant="-4" id="FaG-sg-7vQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xkV-AP-FVo" secondAttribute="trailing" constant="20" id="I3H-Rd-0Tg"/>
                             <constraint firstItem="xkV-AP-FVo" firstAttribute="leading" secondItem="jQC-AH-5Jr" secondAttribute="leadingMargin" constant="20" id="Ko6-p3-87P"/>
                             <constraint firstItem="5tX-ZP-sVO" firstAttribute="top" secondItem="xkV-AP-FVo" secondAttribute="bottom" constant="8" id="Lzq-FV-UBk"/>
                             <constraint firstItem="u2W-ky-LBz" firstAttribute="top" secondItem="aGk-xv-DJz" secondAttribute="bottom" id="SCH-tQ-Ozs"/>
-                            <constraint firstItem="r2T-a2-egy" firstAttribute="trailing" secondItem="jQC-AH-5Jr" secondAttribute="trailingMargin" id="Tsg-fN-Yfn"/>
+                            <constraint firstItem="r2T-a2-egy" firstAttribute="trailing" secondItem="jQC-AH-5Jr" secondAttribute="trailingMargin" constant="4" id="Tsg-fN-Yfn"/>
                             <constraint firstItem="xkV-AP-FVo" firstAttribute="top" secondItem="sMP-Xs-scg" secondAttribute="bottom" constant="10" id="UZe-UX-6em"/>
                             <constraint firstItem="5tX-ZP-sVO" firstAttribute="centerX" secondItem="jQC-AH-5Jr" secondAttribute="centerX" id="bPP-SG-J5R"/>
                             <constraint firstItem="sMP-Xs-scg" firstAttribute="trailing" secondItem="jQC-AH-5Jr" secondAttribute="trailingMargin" id="nZN-Tf-rtb"/>

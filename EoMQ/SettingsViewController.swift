@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+var pickerSelection = 0
+
 class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     
@@ -16,9 +18,9 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBOutlet var resultsLabel: UILabel!
     
-    var randomSelectionList = ["General Random", "Random (minus) Previsou", "In Order"]
+    var randomSelectionList = ["General Random", "Random (minus) Previous", "In Order"]
     
-    var pickerSelection = 0
+    
     
 // ---------------------------------------
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -34,11 +36,20 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.pickerSelection = row
+        pickerSelection = row
     }
     
 // ---------------------------------------
     @IBAction func selectButton(sender: AnyObject) {
+        print(pickerSelection)
+        
+        if pickerSelection == 0 {
+            self.resultsLabel.text = "''Genernal Random'' Option has been selected. \n Goto to Home page to start"
+        } else if pickerSelection == 1 {
+            self.resultsLabel.text = "''Random (minus) Previous'' Option has been selected. \n Goto to Home page to start"
+        } else if pickerSelection == 2 {
+            self.resultsLabel.text = "''In Order'' Option has been selected. \n Goto to Home page to start"
+        }
         
     }
     
