@@ -24,6 +24,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 // ---------------------------------------
     @IBAction func startButton(sender: AnyObject) {
+        
+        questionsListNumbers = ["1", "2", "3", "4", "5"] // Total and exact in CoreD
+        randomRange = 5 // 0 - 4 = 5 // no incl. 5 .. to match CoreD list of no.s
+        
         performSegueWithIdentifier("toQuestions", sender: self)
     }
     

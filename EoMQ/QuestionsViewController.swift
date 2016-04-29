@@ -12,6 +12,11 @@ import CoreData
 var totalQuestions = 0
 var totalCorrects = 0
 
+// Set from StartButton - HomeVC
+var randomRange = Int() // from 0 - 4 = 5 questions // For Rn(minusPast)
+var questionsListNumbers : [String] = [] // Index 0 - 4 = 5 questions // For Rn(minusPast)
+// ------------------------------
+
 class QuestionsViewController: UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
@@ -85,8 +90,25 @@ class QuestionsViewController: UIViewController {
         // Reset ifOptionSelected - back to "0"
         self.ifOptionSelected = 0
         
-        // Call RN Q.'s again
-        getRandomQuestion()
+        // if Range <0 - do Alert and go to results = finished Quiz
+        if randomRange < 1 {
+            
+            let alert = UIAlertController(title: "Alert", message: "No More Questions. Goto Results.", preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Cancel, handler: {
+                UIAlertAction in
+                
+                alert.dismissViewControllerAnimated(true, completion: nil)
+                // GoTo Results...
+                self.performSegueWithIdentifier("questionsToResults", sender: self)
+            })
+            alert.addAction(cancelAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        } else {
+           
+            // Call RN Q.'s again
+            getRandomQuestion()
+        }
     }
     
 // ---------------------------------------
@@ -196,63 +218,131 @@ class QuestionsViewController: UIViewController {
 // ---------------------------------------
     func getRandomQuestion() {
         
-        // RN No.
-        // var randomNumber = arc4random() % 5 // replaced as _uniform=better generator
-        var randomNumber = arc4random_uniform(6) // 0-5
-        randomNumber += 1 // 1-5
-        let randomNoString = String(randomNumber)
+        if pickerSelection == 0 {
+            // Gen. RN No.
+            var randomNumber = arc4random_uniform(6) // 0-5
+            randomNumber += 1 // 1-5 i.e. questions from 1 to 5
+            let randomNoString = String(randomNumber) // convert to Str for Predicate CoreD
         
-        // ** Fetch
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context: NSManagedObjectContext = appDel.managedObjectContext
+            // ** Fetch
+            let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let context: NSManagedObjectContext = appDel.managedObjectContext
         
-        let request = NSFetchRequest(entityName: "QuestionsDB")
-        request.predicate = NSPredicate(format: "number = %@", randomNoString)
-        request.returnsObjectsAsFaults = false
+            let request = NSFetchRequest(entityName: "QuestionsDB")
+            request.predicate = NSPredicate(format: "number = %@", randomNoString)
+            request.returnsObjectsAsFaults = false
         
-        do {
-            let results = try context.executeFetchRequest(request)
+            do {
+                let results = try context.executeFetchRequest(request)
             
-            if results.count > 0 {
+                if results.count > 0 {
                 
-                for result in results as! [NSManagedObject] {
+                    for result in results as! [NSManagedObject] {
                 
-                    if let question2ask = result.valueForKey("question") as? String {
+                        if let question2ask = result.valueForKey("question") as? String {
                         self.questionLabel.text = question2ask
-                    }
-                
-                    if let optionAask = result.valueForKey("optionA") as? String {
+                        }
+                        
+                        if let optionAask = result.valueForKey("optionA") as? String {
                         optionA.setTitle(optionAask, forState: UIControlState.Normal)
-                    }
+                        }
                     
-                    if let optionBask = result.valueForKey("optionB") as? String {
+                        if let optionBask = result.valueForKey("optionB") as? String {
                         optionB.setTitle(optionBask, forState: UIControlState.Normal)
-                    }
+                        }
                     
-                    if let optionCask = result.valueForKey("optionC") as? String {
+                        if let optionCask = result.valueForKey("optionC") as? String {
                         optionC.setTitle(optionCask, forState: UIControlState.Normal)
-                    }
+                        }
                     
-                    if let optionDask = result.valueForKey("optionD") as? String {
+                        if let optionDask = result.valueForKey("optionD") as? String {
                         optionD.setTitle(optionDask, forState: UIControlState.Normal)
-                    }
+                        }
                     
-                    if let correct = result.valueForKey("correctAnswer") as? String {
+                        if let correct = result.valueForKey("correctAnswer") as? String {
                         self.rightAnswerFromFetch = correct // ** Use with SubmitButton
-                    }
+                        }
                     
                     
-                } // end For..in..loop
+                    } // end For..in..loop
                 
-            } // end IF
+                } // end IF
             
-        } catch {
-            print("Error fetching results")
-        } // end 'do-catch'
+            } catch {
+                print("Error fetching results")
+            } // end 'do-catch'
+        } // end IF pickerSelection == 0
         
+        else if pickerSelection == 1 { // Rn.No (minus Past Ones)
+            
+            // RN No.(minus Past)
+            let convertedIntRandomRange = UInt32(randomRange) // Int: 5 - converted Int to UInt32 for arc4Random
+            let randomNumber = arc4random_uniform(convertedIntRandomRange) // 0-4 as UInt32
+            
+            let selectedNumberFromArray = questionsListNumbers[Int(randomNumber)] // convert UInt32 to Int to use in Array Indx... to Give Value as.."selectedNumberFromArray"
+            
+            // remove the value for this Indx so not Use again
+            questionsListNumbers.removeAtIndex(Int(randomNumber))
+            
+            // use "selectedNumberFromArray" for Predicate after convert to String
+            let randomString = String(selectedNumberFromArray)
+            
+            
+            // ** Fetch
+            let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let context: NSManagedObjectContext = appDel.managedObjectContext
+            
+            let request = NSFetchRequest(entityName: "QuestionsDB")
+            request.predicate = NSPredicate(format: "number = %@", randomString)
+            request.returnsObjectsAsFaults = false
+
+            do {
+                let results = try context.executeFetchRequest(request)
+                
+                if results.count > 0 {
+                    
+                    for result in results as! [NSManagedObject] {
+                        
+                        if let question2ask = result.valueForKey("question") as? String {
+                            self.questionLabel.text = question2ask
+                        }
+                        
+                        if let optionAask = result.valueForKey("optionA") as? String {
+                            optionA.setTitle(optionAask, forState: UIControlState.Normal)
+                        }
+                        
+                        if let optionBask = result.valueForKey("optionB") as? String {
+                            optionB.setTitle(optionBask, forState: UIControlState.Normal)
+                        }
+                        
+                        if let optionCask = result.valueForKey("optionC") as? String {
+                            optionC.setTitle(optionCask, forState: UIControlState.Normal)
+                        }
+                        
+                        if let optionDask = result.valueForKey("optionD") as? String {
+                            optionD.setTitle(optionDask, forState: UIControlState.Normal)
+                        }
+                        
+                        if let correct = result.valueForKey("correctAnswer") as? String {
+                            self.rightAnswerFromFetch = correct // ** Use with SubmitButton
+                        }
+                        
+                        
+                    } // end For..in..loop
+                    
+                } // end IF
+                
+            } catch {
+                print("Error fetching results")
+            } // end 'do-catch'
+            
+            // reduce Global RandomRange by 1
+            randomRange = randomRange - 1
+            
+        } // end IF pickerSelection == 1
         
     }
-   
+
 // ---------------------------------------
     override func viewWillAppear(animated: Bool) {
         // update Scores at Top
