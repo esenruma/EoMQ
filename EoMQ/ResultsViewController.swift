@@ -70,7 +70,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
 // ---------------------------------------
     @IBAction func saveResultsButton(sender: AnyObject) {
         // Save to CoreD
-        if self.nameTextLabel == nil || self.imageView == nil {
+        if self.nameTextLabel == "" {
             noNameAlert()
             
         } else {

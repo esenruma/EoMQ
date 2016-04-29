@@ -43,7 +43,22 @@ class QuestionsViewController: UIViewController {
     
 // ---------------------------------------
     @IBAction func finishButton(sender: AnyObject) {
-        performSegueWithIdentifier("questionsToResults", sender: self)
+        
+        // if No Q's Answered = Alert + return to Home VC
+        if totalQuestions == 0 {
+            let alert = UIAlertController(title: "Alert", message: "No Questions Answered!!", preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Cancel, handler: {
+                UIAlertAction in
+                
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            })
+            alert.addAction(cancelAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        } else {
+            
+            performSegueWithIdentifier("questionsToResults", sender: self)
+        }
     }
     
 // ---------------------------------------
