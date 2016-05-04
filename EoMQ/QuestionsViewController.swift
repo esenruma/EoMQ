@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 
-var totalQuestions = 0
-var totalCorrects = 0
+// ** For Results VC **
+var totalQuestions = 0  // To Hold Score-Total 'SubmitButton'
+var totalCorrects = 0   // To Hold Score-Correct 'SubmitButton'
 
-// Set from StartButton - HomeVC
+// Values Set from StartButton - HomeVC
+var questionsListNumbers : [String] = [] // =5 questions // For Rn(minusPast)
 var randomRange = Int() // from 0 - 4 = 5 questions // For Rn(minusPast)
-var questionsListNumbers : [String] = [] // Index 0 - 4 = 5 questions // For Rn(minusPast)
 // ------------------------------
+
 
 class QuestionsViewController: UIViewController {
     
@@ -34,16 +36,24 @@ class QuestionsViewController: UIViewController {
   
     @IBOutlet var next: UIButton!
     
+    @IBOutlet var cancelButton: UIBarButtonItem!
+    
+    
+    @IBOutlet var nextLabelForHighlight: UILabel!
+    
+    
     var rightAnswerFromFetch = String() // store String Correct Answer from Fetch-To compare
     var selectedAnswer = String() // which Option=Selected? // last one selected B4 'Submit'
     
-    var ifOptionSelected : Int = 0 // fix SubmitButton- Ensure Alert if Option Not selected
+    var ifOptionSelected : Int = 0 // SubmitButton- Ensures Alert if Option Not selected
     
 // ---------------------------------------
     @IBAction func cancelButtonQ(sender: AnyObject) {
         totalCorrects = 0
         totalQuestions = 0
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        performSegueWithIdentifier("QuestionsToHome", sender: self)
+        // self.dismissViewControllerAnimated(true, completion: nil) // Not use-'Dismiss' causes not questions to show after "Start"button starts process again
     }
     
 // ---------------------------------------
@@ -87,6 +97,9 @@ class QuestionsViewController: UIViewController {
         // results Label Clear
         self.resultsLabel.text = ""
         
+        // Next Button Highlighter Clear
+        self.nextLabelForHighlight.backgroundColor = UIColor.clearColor()
+        
         // Reset ifOptionSelected - back to "0"
         self.ifOptionSelected = 0
         
@@ -114,14 +127,14 @@ class QuestionsViewController: UIViewController {
 // ---------------------------------------
     @IBAction func submitButton(sender: AnyObject) {
         
-        // check if an Option is selected 1st - if Not - goto Alert
-        if self.optionA.backgroundColor == UIColor.yellowColor() {
+        // check if an Option is selected 1st - if Not - Need for ALERT
+        if self.optionA.backgroundColor == UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) {
             self.ifOptionSelected = 1
-        } else if self.optionB.backgroundColor == UIColor.yellowColor() {
+        } else if self.optionB.backgroundColor == UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) {
             self.ifOptionSelected = 1
-        } else if self.optionC.backgroundColor == UIColor.yellowColor() {
+        } else if self.optionC.backgroundColor == UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) {
             self.ifOptionSelected = 1
-        } else if self.optionD.backgroundColor == UIColor.yellowColor() {
+        } else if self.optionD.backgroundColor == UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) {
             self.ifOptionSelected = 1
         }
         
@@ -145,31 +158,34 @@ class QuestionsViewController: UIViewController {
             self.optionD.enabled = false
             self.submit.enabled = false
         
+            // Add tot.Q's to GLobal + (ScoreLabel)
+            totalQuestions = totalQuestions + 1
+            
             // Check if answer = Correct
             if self.selectedAnswer == self.rightAnswerFromFetch {
                 self.resultsLabel.text = "That's RIGHT !!!"
                 totalCorrects = totalCorrects + 1
             
             } else {
-                self.resultsLabel.text = "Sorry - that's wrong! It is... \(self.rightAnswerFromFetch)"
+                self.resultsLabel.text = "Sorry - that's wrong! \n It is... \(self.rightAnswerFromFetch)"
             } // end IF
         
             // Highlight next-STEP toDo
-            self.next.backgroundColor = UIColor.redColor()
-        
-            // Add tot.Q's to GLobal + (ScoreLabel)
-            totalQuestions = totalQuestions + 1
-        
+            self.nextLabelForHighlight.backgroundColor = UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0)
+            
+            
+
+            // Score Update
             self.scoreLabel.text = "\(totalCorrects) correct out of \(totalQuestions)"
             print(totalCorrects) ; print(totalQuestions)
             
         } // end 1st IF
-    }
+    } // End Func 
     
 // --------------Option Selections-----------------
     @IBAction func answerAAction(sender: AnyObject) {
-        // ** Keep Yellow + clear other button colors
-        self.optionA.backgroundColor = UIColor.yellowColor() //*A*
+        // ** Keep Red + clear other button colors
+        self.optionA.backgroundColor = UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) //*A*
         self.optionB.backgroundColor = UIColor.clearColor()
         self.optionC.backgroundColor = UIColor.clearColor()
         self.optionD.backgroundColor = UIColor.clearColor()
@@ -180,8 +196,8 @@ class QuestionsViewController: UIViewController {
     }
     
     @IBAction func answerBAction(sender: AnyObject) {
-        // ** Keep Yellow + clear other button colors
-        self.optionB.backgroundColor = UIColor.yellowColor() //*B*
+        // ** Keep Red + clear other button colors
+        self.optionB.backgroundColor = UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) //*B*
         self.optionA.backgroundColor = UIColor.clearColor()
         self.optionC.backgroundColor = UIColor.clearColor()
         self.optionD.backgroundColor = UIColor.clearColor()
@@ -192,8 +208,8 @@ class QuestionsViewController: UIViewController {
     }
 
     @IBAction func answerCAction(sender: AnyObject) {
-        // ** Keep Yellow + clear other button colors
-        self.optionC.backgroundColor = UIColor.yellowColor() //*C*
+        // ** Keep Red + clear other button colors
+        self.optionC.backgroundColor = UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) //*C*
         self.optionA.backgroundColor = UIColor.clearColor()
         self.optionB.backgroundColor = UIColor.clearColor()
         self.optionD.backgroundColor = UIColor.clearColor()
@@ -204,8 +220,8 @@ class QuestionsViewController: UIViewController {
     }
     
     @IBAction func answerDAction(sender: AnyObject) {
-        // ** Keep Yellow + clear other button colors
-        self.optionD.backgroundColor = UIColor.yellowColor() //*D*
+        // ** Keep Red + clear other button colors
+        self.optionD.backgroundColor = UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0) //*D*
         self.optionA.backgroundColor = UIColor.clearColor()
         self.optionB.backgroundColor = UIColor.clearColor()
         self.optionC.backgroundColor = UIColor.clearColor()
@@ -352,12 +368,16 @@ class QuestionsViewController: UIViewController {
 // ---------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // ** ScrollView **
         self.scrollView.contentSize.height = 667
-        self.scrollView.contentSize.width = 375
         
         // ** Call Questions at Random **
         getRandomQuestion()
+        
+        // ** Set image to Left Bar Button Item
+        let homeImage = UIImage(named: "Home icon 40px")
+        self.cancelButton.setBackgroundImage(homeImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
     }
 
     override func didReceiveMemoryWarning() {

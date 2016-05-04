@@ -10,12 +10,13 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     
     @IBOutlet var tableView: UITableView!
     
     var resultsList : [Results] = []
     
+    @IBOutlet var randomTypeLabel: UILabel!
     
 // ---------------------------------------
     @IBAction func settingsButton(sender: AnyObject) {
@@ -23,10 +24,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
 // ---------------------------------------
-    @IBAction func startButton(sender: AnyObject) {
+       @IBAction func startButton(sender: AnyObject) {
         
         questionsListNumbers = ["1", "2", "3", "4", "5"] // Total and exact in CoreD
-        randomRange = 5 // 0 - 4 = 5 // no incl. 5 .. to match CoreD list of no.s
+        randomRange = 5 // 0 - 4 = 5 // no incl. 5 .. to match CoreD list of no.s // match index in "questionsListNumbers" 
         
         performSegueWithIdentifier("toQuestions", sender: self)
     }
@@ -85,6 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if results.count > 0 {
                 self.resultsList = results as! [Results]
             }
+            
         } catch {
             print("Unable to Fetch 'Results' Entity")
         }
@@ -92,12 +94,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Refresh TAble
         self.tableView.reloadData()
         
+        // -------Rn 'Type' Label-------------
+        if pickerSelection == 0 {
+            self.randomTypeLabel.text = "Genernal Random \n Option Selected"
+        } else if pickerSelection == 1 {
+            self.randomTypeLabel.text = "Random (minus)Previous \n Option Selected"
+        }
     }
-    
     
 // ---------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let image = UIImage(named: "finito icon_100*40px")
+        self.navigationController?.navigationBar.setBackgroundImage(image, forBarMetrics: .Default)
+        
         // Add Questions x5
 //        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        let context: NSManagedObjectContext = appDel.managedObjectContext
@@ -121,7 +132,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        } catch {
 //            print("Error Saving Data to CoreD")
 //        }
-        
+
     }
 
     override func didReceiveMemoryWarning() {

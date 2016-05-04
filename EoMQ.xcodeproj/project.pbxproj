@@ -21,6 +21,9 @@
 		E0CB7EA41CD281C500F4F260 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7EA31CD281C500F4F260 /* ResultsViewController.swift */; };
 		E0CB7EA61CD2961800F4F260 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7EA51CD2961800F4F260 /* SettingsViewController.swift */; };
 		E0CB7EA81CD2A06B00F4F260 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7EA71CD2A06B00F4F260 /* CustomCell.swift */; };
+		E0E17C6E1CD9035B004B0D0C /* QRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E0E17C6B1CD9035B004B0D0C /* QRCoreData.sqlite */; };
+		E0E17C6F1CD9035B004B0D0C /* QRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E0E17C6C1CD9035B004B0D0C /* QRCoreData.sqlite-shm */; };
+		E0E17C701CD9035B004B0D0C /* QRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E0E17C6D1CD9035B004B0D0C /* QRCoreData.sqlite-wal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		E0CB7EA31CD281C500F4F260 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		E0CB7EA51CD2961800F4F260 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E0CB7EA71CD2A06B00F4F260 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		E0E17C6B1CD9035B004B0D0C /* QRCoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QRCoreData.sqlite; sourceTree = "<group>"; };
+		E0E17C6C1CD9035B004B0D0C /* QRCoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QRCoreData.sqlite-shm"; sourceTree = "<group>"; };
+		E0E17C6D1CD9035B004B0D0C /* QRCoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QRCoreData.sqlite-wal"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,9 @@
 				E0CB7E901CD2507000F4F260 /* LaunchScreen.storyboard */,
 				E0CB7E931CD2507000F4F260 /* Info.plist */,
 				E0CB7E8B1CD2507000F4F260 /* EoMQ.xcdatamodeld */,
+				E0E17C6B1CD9035B004B0D0C /* QRCoreData.sqlite */,
+				E0E17C6C1CD9035B004B0D0C /* QRCoreData.sqlite-shm */,
+				E0E17C6D1CD9035B004B0D0C /* QRCoreData.sqlite-wal */,
 				E0CB7E9B1CD26B5B00F4F260 /* QuestionsDB+CoreDataProperties.swift */,
 				E0CB7E9C1CD26B5B00F4F260 /* QuestionsDB.swift */,
 				E0CB7E9D1CD26B5B00F4F260 /* Results+CoreDataProperties.swift */,
@@ -149,9 +158,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E17C701CD9035B004B0D0C /* QRCoreData.sqlite-wal in Resources */,
 				E0CB7E921CD2507000F4F260 /* LaunchScreen.storyboard in Resources */,
 				E0CB7E8F1CD2507000F4F260 /* Assets.xcassets in Resources */,
 				E0CB7E8A1CD2507000F4F260 /* Main.storyboard in Resources */,
+				E0E17C6E1CD9035B004B0D0C /* QRCoreData.sqlite in Resources */,
+				E0E17C6F1CD9035B004B0D0C /* QRCoreData.sqlite-shm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +334,7 @@
 				E0CB7E981CD2507000F4F260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

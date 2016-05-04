@@ -9,17 +9,18 @@
 import UIKit
 import CoreData
 
-var pickerSelection = 0
+var pickerSelection = 0 // Set as Default Gen. Random 
 
-class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIScrollViewDelegate {
 
+    
+    @IBOutlet var scrollView: UIScrollView!
     
     @IBOutlet var pickerView: UIPickerView!
     
     @IBOutlet var resultsLabel: UILabel!
     
-    var randomSelectionList = ["General Random", "Random (minus) Previous", "In Order"]
-    
+    var randomSelectionList = ["General Random", "Random (minus) Previous"]
     
     
 // ---------------------------------------
@@ -45,16 +46,15 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         if pickerSelection == 0 {
             self.resultsLabel.text = "''Genernal Random'' Option has been selected. \n Goto to Home page to start"
-        } else if pickerSelection == 1 {
-            self.resultsLabel.text = "''Random (minus) Previous'' Option has been selected. \n Goto to Home page to start"
-        } else if pickerSelection == 2 {
-            self.resultsLabel.text = "''In Order'' Option has been selected. \n Goto to Home page to start"
-        }
-        
+            
+            } else if pickerSelection == 1 {
+                self.resultsLabel.text = "''Random (minus) Previous'' \n Option has been selected. \n Goto to Home page to start"
+            
+        } // end If
     }
     
 // ---------------------------------------
-    @IBAction func cancelButtonSettings(sender: AnyObject) {
+    @IBAction func homeButton(sender: AnyObject) {
         performSegueWithIdentifier("settingToHome", sender: self)
     }
     
@@ -62,6 +62,12 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.scrollView.contentSize.height = 667
+        
+
+        // works to Add Image to Bar Button Item
+//        let homeImage = UIImage(named: "Home icon 40px")
+//        self.backButton.setBackgroundImage(homeImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default) // sets image to LT Bar Button Item: "button" = LEFT only
         
     }
 
@@ -71,3 +77,17 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

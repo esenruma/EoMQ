@@ -9,8 +9,12 @@
 import UIKit
 import CoreData
 
-class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate {
 
+    
+    @IBOutlet var scrollView: UIScrollView!
+    
+    @IBOutlet var cancelVC: UIBarButtonItem!
     
     @IBOutlet var totQsLabel: UILabel!
     
@@ -21,6 +25,9 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet var nameTextLabel: UITextField!
     
     @IBOutlet var imageView: UIImageView!
+    
+    @IBOutlet var redButton: UIButton!
+    
  
 // ---------------------------------------
     @IBAction func cancelButton(sender: AnyObject) {
@@ -57,8 +64,9 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.dismissViewControllerAnimated(true, completion: nil)
     }
    
-// ---------------------------------------
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+// ------------Keyboard---------------
+    // In scrollView.... - Work with 'TapGesture' in 'ViewDidLoad'
+    func dismissKeyBoard() {
         self.view.endEditing(true)
     }
     
@@ -93,7 +101,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
                 print("Error Saving Results")
             }
             
-            // Reset Score on Questions VC
+            // Reset Score on Questions VC-Global
             totalQuestions = 0
             totalCorrects = 0
             
@@ -126,6 +134,14 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // -----red Button Txt Alignment -----
+        self.redButton.titleLabel?.textAlignment = NSTextAlignment.Center
+        
+        // -----Keyboard Behaviour-----
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ResultsViewController.dismissKeyBoard))
+        self.view.addGestureRecognizer(tap)
+        
+        // ----------------------------
         self.totQsLabel.text = String(totalQuestions)
         self.totCorrectLabel.text = String(totalCorrects)
         
@@ -133,6 +149,18 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
         let percCalc = (Double(totalCorrects) / Double(totalQuestions)) * 100
         self.correctPercentageLabel.text = "\(Int(percCalc))%"
         
+        // ScrollView
+        self.scrollView.contentSize.height = 667
+        
+        // *** modify textField **
+        self.nameTextLabel.layer.borderColor = UIColor.whiteColor().CGColor
+        self.nameTextLabel.layer.borderWidth = 1.0
+        self.nameTextLabel.layer.cornerRadius = 8.0
+        self.nameTextLabel.attributedPlaceholder = NSAttributedString(string:"Enter name...", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        // works to Add Image to Bar Button Item
+        let homeImage = UIImage(named: "Home icon 40px")
+        self.cancelVC.setBackgroundImage(homeImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default) // sets image to LT Bar Button Item: "button" = LEFT only
     }
 
     override func didReceiveMemoryWarning() {

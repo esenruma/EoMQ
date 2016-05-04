@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // print(applicationDocumentsDirectory.path)
+        
         return true
     }
 
@@ -58,11 +61,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
 
+    // *** Updated to Import SQLite DB from Simulator ***
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
+        
+        // ---------------------------------------------------
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite") // originally = "SingleViewCoreData.sqlite" - then changed to new name...
+        
+        // ** Load the Already made DB from Simulator **
+        if !NSFileManager.defaultManager().fileExistsAtPath(url.path!) {
+            
+            let sourceSqliteURLs = [NSBundle.mainBundle().URLForResource("QRCoreData", withExtension: "sqlite")!, NSBundle.mainBundle().URLForResource("QRCoreData", withExtension: "sqlite-wal")!, NSBundle.mainBundle().URLForResource("QRCoreData", withExtension: "sqlite-shm")!]
+            
+            let destSqliteURLs = [self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite"), self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite-wal"), self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite-shm")]
+            
+            for index in 0 ..< sourceSqliteURLs.count {
+                do {
+                    try NSFileManager.defaultManager().copyItemAtURL(sourceSqliteURLs[index], toURL: destSqliteURLs[index])
+                } catch {
+                    print(error)
+                }
+            }
+        }   
+        // ---------------------------------------------------
+        
+        
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
@@ -82,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return coordinator
     }()
+// ---------------------------------------------------
 
     lazy var managedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
