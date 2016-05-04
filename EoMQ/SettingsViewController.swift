@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 var pickerSelection = 0 // Set as Default Gen. Random 
 
@@ -20,8 +21,112 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBOutlet var resultsLabel: UILabel!
     
+    @IBOutlet var pendingLabel: UILabel!
+    
     var randomSelectionList = ["General Random", "Random (minus) Previous"]
     
+    var audioPlayer : AVAudioPlayer?
+    
+    
+// ---------------------------------------
+    @IBAction func resetScoresButton(sender: AnyObject) {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "Results")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(request)
+            
+            if results.count > 0 {
+                // ** Something to Delete = Alert to Check if SURE? **
+                let alert = UIAlertController(title: "Deleting ALL Scores", message: "Are you sure?", preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) {
+                    UIAlertAction in
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }
+                
+                let deleteAction = UIAlertAction(title: "DELETE", style: UIAlertActionStyle.Default) {
+                    UIAlertAction in
+                    
+                    self.resetDeleteAll() // call this func
+                }
+                
+                alert.addAction(cancelAction)
+                alert.addAction(deleteAction)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                // ** Make Alert Sound **
+                do {
+                    let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                    let url = NSURL(fileURLWithPath: path!)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    self.audioPlayer!.play()
+                } catch {
+                    print("Unable to Play Sound!!")
+                } // end do-try-catch
+                
+            } else {
+                // ** Nothing to Delete = Alert to inform = nothing there
+                let alert = UIAlertController(title: "Alert", message: "Nothing to Delete", preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) {
+                    UIAlertAction in
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                }
+                
+                alert.addAction(cancelAction)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                // ** Make Alert Sound **
+                do {
+                    let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                    let url = NSURL(fileURLWithPath: path!)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    self.audioPlayer!.play()
+                } catch {
+                    print("Unable to Play Sound!!")
+                } // end do-try-catch
+                
+            } // End IF
+            
+        } catch {
+        } // end Do-Try-Catch
+        
+    } // End Func
+    
+    // ------------Deleting from CoreData 'Results'------------------------------------
+    func resetDeleteAll() {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "Results")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(request)
+            
+            if results.count > 0 {
+                
+                for result: AnyObject in results {
+                    
+                    context.deleteObject(result as! NSManagedObject)
+                    
+                    print("NSManagedObject has been Deleted")
+                    
+                    self.pendingLabel.text! = "ALL DELETED!!!"
+                }
+                try context.save() }
+        } catch {
+            print("Unable to Delete all Scores from Results")
+        }
+    }
     
 // ---------------------------------------
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -44,6 +149,17 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBAction func selectButton(sender: AnyObject) {
         print(pickerSelection)
         
+        // ** Make Click Sound **
+        do {
+            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+            let url = NSURL(fileURLWithPath: path!)
+            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+            self.audioPlayer!.play()
+        } catch {
+            print("Unable to Play Sound!!")
+        } // end do-try-catch
+        
+        // picker selection
         if pickerSelection == 0 {
             self.resultsLabel.text = "''Genernal Random'' Option has been selected. \n Goto to Home page to start"
             

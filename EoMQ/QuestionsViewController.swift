@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 // ** For Results VC **
 var totalQuestions = 0  // To Hold Score-Total 'SubmitButton'
@@ -38,14 +39,15 @@ class QuestionsViewController: UIViewController {
     
     @IBOutlet var cancelButton: UIBarButtonItem!
     
-    
     @IBOutlet var nextLabelForHighlight: UILabel!
-    
     
     var rightAnswerFromFetch = String() // store String Correct Answer from Fetch-To compare
     var selectedAnswer = String() // which Option=Selected? // last one selected B4 'Submit'
     
     var ifOptionSelected : Int = 0 // SubmitButton- Ensures Alert if Option Not selected
+    
+    var audioPlayer : AVAudioPlayer?
+
     
 // ---------------------------------------
     @IBAction func cancelButtonQ(sender: AnyObject) {
@@ -71,6 +73,17 @@ class QuestionsViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             
         } else {
+            
+            // ** Make sound-YiPPi !!! **
+            do {
+                let path = NSBundle.mainBundle().pathForResource("1_person_cheering", ofType: "mp3")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+            } // end do-try-catch
             
             performSegueWithIdentifier("questionsToResults", sender: self)
         }
@@ -144,10 +157,21 @@ class QuestionsViewController: UIViewController {
             let alert = UIAlertController(title: "Alert", message: "Please select an Option!", preferredStyle: .Alert)
             let cancelAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.Cancel, handler: {
                 UIAlertAction in
+                
                 alert.dismissViewControllerAnimated(true, completion: nil)
             })
             alert.addAction(cancelAction)
             self.presentViewController(alert, animated: true, completion: nil)
+            
+            // ** Make Alert Sound **
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+            } catch {
+                print("Unable to Play Sound!!")
+            } // end do-try-catch
             
         } else {
         
@@ -165,9 +189,33 @@ class QuestionsViewController: UIViewController {
             if self.selectedAnswer == self.rightAnswerFromFetch {
                 self.resultsLabel.text = "That's RIGHT !!!"
                 totalCorrects = totalCorrects + 1
+                
+                // ** Make sound-CORRECT!! **
+                do {
+                    let path = NSBundle.mainBundle().pathForResource("Kid_Laughing", ofType: "mp3")
+                    let url = NSURL(fileURLWithPath: path!)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    self.audioPlayer!.play()
+                    
+                } catch {
+                    print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+                } // end do-try-catch
+                
             
             } else {
                 self.resultsLabel.text = "Sorry - that's wrong! \n It is... \(self.rightAnswerFromFetch)"
+                
+                // ** Make sound-WRONG!! **
+                do {
+                    let path = NSBundle.mainBundle().pathForResource("thunder_sound_3secs", ofType: "m4a")
+                    let url = NSURL(fileURLWithPath: path!)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    self.audioPlayer!.play()
+                    
+                } catch {
+                    print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+                } // end do-try-catch
+                
             } // end IF
         
             // Highlight next-STEP toDo
@@ -193,7 +241,18 @@ class QuestionsViewController: UIViewController {
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionA.titleLabel?.text)!
         print(selectedAnswer)
-    }
+        
+        // ** Make Sound
+        do {
+            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+            let url = NSURL(fileURLWithPath: path!)
+            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+            self.audioPlayer!.play()
+        } catch {
+            print("Unable to Play Sound!!")
+        } // end do-try-catch
+        
+    } // End Func
     
     @IBAction func answerBAction(sender: AnyObject) {
         // ** Keep Red + clear other button colors
@@ -205,7 +264,18 @@ class QuestionsViewController: UIViewController {
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionB.titleLabel?.text)!
         print(selectedAnswer)
-    }
+        
+        // ** Make Sound
+        do {
+            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+            let url = NSURL(fileURLWithPath: path!)
+            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+            self.audioPlayer!.play()
+        } catch {
+            print("Unable to Play Sound!!")
+        } // end do-try-catch
+        
+    } // End Func
 
     @IBAction func answerCAction(sender: AnyObject) {
         // ** Keep Red + clear other button colors
@@ -217,7 +287,18 @@ class QuestionsViewController: UIViewController {
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionC.titleLabel?.text)!
         print(selectedAnswer)
-    }
+        
+        // ** Make Sound
+        do {
+            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+            let url = NSURL(fileURLWithPath: path!)
+            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+            self.audioPlayer!.play()
+        } catch {
+            print("Unable to Play Sound!!")
+        } // end do-try-catch
+        
+    } // End Func
     
     @IBAction func answerDAction(sender: AnyObject) {
         // ** Keep Red + clear other button colors
@@ -229,7 +310,18 @@ class QuestionsViewController: UIViewController {
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionD.titleLabel?.text)!
         print(selectedAnswer)
-    }
+        
+        // ** Make Sound
+        do {
+            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+            let url = NSURL(fileURLWithPath: path!)
+            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+            self.audioPlayer!.play()
+        } catch {
+            print("Unable to Play Sound!!")
+        } // end do-try-catch
+        
+    } // End Func
     
 // ---------------------------------------
     func getRandomQuestion() {
