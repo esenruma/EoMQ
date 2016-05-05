@@ -50,23 +50,42 @@ class QuestionsViewController: UIViewController {
     
     var audioPlayer : AVAudioPlayer?
 
+    
+// ---------------------------------------
+    func clickSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Click' Sound!!")
+            } // end do-try-catch
+        } // End If on sound animation
+    }
+    
 // ---------------------------------------
     func alertSound() {
         if soundAnimationOption == 1 {
             do {
-                let path = NSBundle.mainBundle().pathForResource("1_person_cheering", ofType: "mp3")
+                let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
                 let url = NSURL(fileURLWithPath: path!)
                 self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.audioPlayer!.play()
     
             } catch {
-                print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+                print("Unable to play 'Alert' Sound!!")
             } // end do-try-catch
         } // End If on sound animation
     }
     
 // ---------------------------------------
     @IBAction func cancelButtonQ(sender: AnyObject) {
+        
+        clickSound()
+        
         totalCorrects = 0
         totalQuestions = 0
         
@@ -113,6 +132,8 @@ class QuestionsViewController: UIViewController {
 // ---------------------------------------
     @IBAction func nextQuestionButton(sender: AnyObject) {
         
+        clickSound()
+        
         // ** Clear All button colors
         self.optionA.backgroundColor = UIColor.clearColor()
         self.optionB.backgroundColor = UIColor.clearColor()
@@ -130,6 +151,8 @@ class QuestionsViewController: UIViewController {
         
         // results Label Clear
         self.resultsLabel.text = ""
+        self.resultsLabel.hidden = false
+        self.resultsLabel.backgroundColor = UIColor.clearColor()
         
         // Next Button Highlighter Clear
         self.nextLabelForHighlight.backgroundColor = UIColor.clearColor()
@@ -210,7 +233,11 @@ class QuestionsViewController: UIViewController {
             
             // Check if answer = Correct
             if self.selectedAnswer == self.rightAnswerFromFetch {
+                
+                self.resultsLabel.hidden = false
+                self.resultsLabel.backgroundColor = UIColor.yellowColor()
                 self.resultsLabel.text = "That's RIGHT !!!"
+                
                 totalCorrects = totalCorrects + 1
                 
                 // ** Make sound-CORRECT!! **
@@ -227,7 +254,10 @@ class QuestionsViewController: UIViewController {
                 } // end If on sound animation
             
             } else {
-                self.resultsLabel.text = "Sorry - that's wrong! \n It is... \(self.rightAnswerFromFetch)"
+                self.resultsLabel.hidden = false
+                self.resultsLabel.backgroundColor = UIColor.yellowColor()
+                self.resultsLabel.text = "Wrong! \n It is... '\(self.rightAnswerFromFetch)'"
+                
                 
                 // ** Make sound-WRONG!! **
                 if soundAnimationOption == 1 {
@@ -246,8 +276,6 @@ class QuestionsViewController: UIViewController {
         
             // Highlight next-STEP toDo
             self.nextLabelForHighlight.backgroundColor = UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0)
-            
-            
 
             // Score Update
             self.scoreLabel.text = "\(totalCorrects) correct out of \(totalQuestions)"
@@ -486,6 +514,9 @@ class QuestionsViewController: UIViewController {
         if self.questionLabel.text == "Question" {
             getRandomQuestion()
         }
+        
+        // results Label = Hidden
+        self.resultsLabel.hidden = true
         
     } // end Func
     

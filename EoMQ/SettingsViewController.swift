@@ -30,10 +30,28 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     var audioPlayer : AVAudioPlayer?
     
     @IBOutlet var soundChoiceLabel: UILabel!
-
+    
+    
+// ---------------------------------------
+    func clickSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Click' Sound!!")
+            } // end do-try-catch
+        } // End If on sound animation
+    }
     
 // ---------------------------------------
     @IBAction func soundOnOffButton(sender: AnyObject) {
+        
+        clickSound()
+        
         // Default = off = 0 // (on = 1)
         // switch btn 0/Off and 1/On
         
@@ -64,6 +82,8 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
 // ---------------------------------------
     @IBAction func resetScoresButton(sender: AnyObject) {
+        
+        clickSound()
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext = appDel.managedObjectContext
@@ -141,6 +161,8 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     // ------------Deleting from CoreData 'Results'------------------------------------
     func resetDeleteAll() {
         
+        clickSound()
+        
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext = appDel.managedObjectContext
         
@@ -187,28 +209,23 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBAction func selectButton(sender: AnyObject) {
         print(pickerSelection)
         
-        // ** Make Click Sound **
-        do {
-            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
-            let url = NSURL(fileURLWithPath: path!)
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-            self.audioPlayer!.play()
-        } catch {
-            print("Unable to Play Sound!!")
-        } // end do-try-catch
+        clickSound()
         
         // picker selection
         if pickerSelection == 0 {
-            self.resultsLabel.text = "''Genernal Random'' Option has been selected. \n Goto to Home page to start"
+            self.resultsLabel.text = "''General Random'' Option Selected"
             
             } else if pickerSelection == 1 {
-                self.resultsLabel.text = "''Random (minus) Previous'' \n Option has been selected. \n Goto to Home page to start"
+                self.resultsLabel.text = "''Random (minus) Previous'' \n Option Selected"
             
         } // end If
     }
     
 // ---------------------------------------
     @IBAction func homeButton(sender: AnyObject) {
+        
+        clickSound()
+        
         performSegueWithIdentifier("settingToHome", sender: self)
     }
     

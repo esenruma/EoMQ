@@ -31,14 +31,32 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     var audioPlayer : AVAudioPlayer?
     
+
+// ---------------------------------------
+    func clickSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Click' Sound!!")
+            } // end do-try-catch
+        } // End If on sound animation
+    }
  
 // ---------------------------------------
     @IBAction func cancelButton(sender: AnyObject) {
+        clickSound()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 // ---------------------------------------
     @IBAction func getCamera(sender: AnyObject) {
+        
+        clickSound()
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             
@@ -51,6 +69,8 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     
     @IBAction func getPhoto(sender: AnyObject) {
+        
+        clickSound()
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             

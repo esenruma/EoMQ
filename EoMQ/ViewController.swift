@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -17,14 +18,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var resultsList : [Results] = []
     
     @IBOutlet var randomTypeLabel: UILabel!
+
+    var audioPlayer : AVAudioPlayer?
+    
+// ---------------------------------------
+    func clickSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Click' Sound!!")
+            } // end do-try-catch
+        } // End If on sound animation
+    }
     
 // ---------------------------------------
     @IBAction func settingsButton(sender: AnyObject) {
+        
+        clickSound()
+        
         performSegueWithIdentifier("toSettings", sender: self)
     }
     
 // ---------------------------------------
-       @IBAction func startButton(sender: AnyObject) {
+    @IBAction func startButton(sender: AnyObject) {
+        
+        clickSound()
         
         questionsListNumbers = ["1", "2", "3", "4", "5"] // Total and exact in CoreD
         randomRange = 5 // 0 - 4 = 5 // no incl. 5 .. to match CoreD list of no.s // match index in "questionsListNumbers" 
