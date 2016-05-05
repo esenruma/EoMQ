@@ -455,7 +455,13 @@ class QuestionsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         // update Scores at Top
         self.scoreLabel.text = "\(totalCorrects) correct out of \(totalQuestions)"
-    }
+        
+        // Fix prob. of no Questions showing when repeatedly moving to + from btn Home Start - Questions Back buttons
+        if self.questionLabel.text == "Question" {
+            getRandomQuestion()
+        }
+        
+    } // end Func
     
 // ---------------------------------------
     override func viewDidLoad() {

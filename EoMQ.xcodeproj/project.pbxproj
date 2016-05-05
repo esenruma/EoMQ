@@ -13,6 +13,9 @@
 		E025E7601CDA33A400CF37ED /* 1_person_cheering.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E025E75F1CDA33A400CF37ED /* 1_person_cheering.mp3 */; };
 		E025E7641CDA372700CF37ED /* Alert_Fire Beep_2 secs.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E025E7631CDA372700CF37ED /* Alert_Fire Beep_2 secs.m4a */; };
 		E025E7681CDA3D1D00CF37ED /* thought_sounds_1sec.m4a in Resources */ = {isa = PBXBuildFile; fileRef = E025E7671CDA3D1D00CF37ED /* thought_sounds_1sec.m4a */; };
+		E0B57DFB1CDB90830039D5D5 /* QcdCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E0B57DF81CDB90830039D5D5 /* QcdCoreData.sqlite */; };
+		E0B57DFC1CDB90830039D5D5 /* QcdCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E0B57DF91CDB90830039D5D5 /* QcdCoreData.sqlite-shm */; };
+		E0B57DFD1CDB90830039D5D5 /* QcdCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E0B57DFA1CDB90830039D5D5 /* QcdCoreData.sqlite-wal */; };
 		E0CB7E851CD2507000F4F260 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7E841CD2507000F4F260 /* AppDelegate.swift */; };
 		E0CB7E871CD2507000F4F260 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7E861CD2507000F4F260 /* ViewController.swift */; };
 		E0CB7E8A1CD2507000F4F260 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0CB7E881CD2507000F4F260 /* Main.storyboard */; };
@@ -27,9 +30,6 @@
 		E0CB7EA41CD281C500F4F260 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7EA31CD281C500F4F260 /* ResultsViewController.swift */; };
 		E0CB7EA61CD2961800F4F260 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7EA51CD2961800F4F260 /* SettingsViewController.swift */; };
 		E0CB7EA81CD2A06B00F4F260 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CB7EA71CD2A06B00F4F260 /* CustomCell.swift */; };
-		E0E17C6E1CD9035B004B0D0C /* QRCoreData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E0E17C6B1CD9035B004B0D0C /* QRCoreData.sqlite */; };
-		E0E17C6F1CD9035B004B0D0C /* QRCoreData.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = E0E17C6C1CD9035B004B0D0C /* QRCoreData.sqlite-shm */; };
-		E0E17C701CD9035B004B0D0C /* QRCoreData.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = E0E17C6D1CD9035B004B0D0C /* QRCoreData.sqlite-wal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +39,9 @@
 		E025E75F1CDA33A400CF37ED /* 1_person_cheering.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1_person_cheering.mp3; sourceTree = "<group>"; };
 		E025E7631CDA372700CF37ED /* Alert_Fire Beep_2 secs.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alert_Fire Beep_2 secs.m4a"; sourceTree = "<group>"; };
 		E025E7671CDA3D1D00CF37ED /* thought_sounds_1sec.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = thought_sounds_1sec.m4a; sourceTree = "<group>"; };
+		E0B57DF81CDB90830039D5D5 /* QcdCoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QcdCoreData.sqlite; sourceTree = "<group>"; };
+		E0B57DF91CDB90830039D5D5 /* QcdCoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QcdCoreData.sqlite-shm"; sourceTree = "<group>"; };
+		E0B57DFA1CDB90830039D5D5 /* QcdCoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QcdCoreData.sqlite-wal"; sourceTree = "<group>"; };
 		E0CB7E811CD2507000F4F260 /* EoMQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EoMQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0CB7E841CD2507000F4F260 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0CB7E861CD2507000F4F260 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,9 +58,6 @@
 		E0CB7EA31CD281C500F4F260 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		E0CB7EA51CD2961800F4F260 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E0CB7EA71CD2A06B00F4F260 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		E0E17C6B1CD9035B004B0D0C /* QRCoreData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QRCoreData.sqlite; sourceTree = "<group>"; };
-		E0E17C6C1CD9035B004B0D0C /* QRCoreData.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QRCoreData.sqlite-shm"; sourceTree = "<group>"; };
-		E0E17C6D1CD9035B004B0D0C /* QRCoreData.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "QRCoreData.sqlite-wal"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +107,9 @@
 				E0CB7E901CD2507000F4F260 /* LaunchScreen.storyboard */,
 				E0CB7E931CD2507000F4F260 /* Info.plist */,
 				E0CB7E8B1CD2507000F4F260 /* EoMQ.xcdatamodeld */,
-				E0E17C6B1CD9035B004B0D0C /* QRCoreData.sqlite */,
-				E0E17C6C1CD9035B004B0D0C /* QRCoreData.sqlite-shm */,
-				E0E17C6D1CD9035B004B0D0C /* QRCoreData.sqlite-wal */,
+				E0B57DF81CDB90830039D5D5 /* QcdCoreData.sqlite */,
+				E0B57DF91CDB90830039D5D5 /* QcdCoreData.sqlite-shm */,
+				E0B57DFA1CDB90830039D5D5 /* QcdCoreData.sqlite-wal */,
 				E0CB7E9B1CD26B5B00F4F260 /* QuestionsDB+CoreDataProperties.swift */,
 				E0CB7E9C1CD26B5B00F4F260 /* QuestionsDB.swift */,
 				E0CB7E9D1CD26B5B00F4F260 /* Results+CoreDataProperties.swift */,
@@ -176,9 +176,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B57DFC1CDB90830039D5D5 /* QcdCoreData.sqlite-shm in Resources */,
 				E025E7681CDA3D1D00CF37ED /* thought_sounds_1sec.m4a in Resources */,
+				E0B57DFD1CDB90830039D5D5 /* QcdCoreData.sqlite-wal in Resources */,
 				E025E7561CDA286900CF37ED /* Lamp_switch1.wav in Resources */,
-				E0E17C701CD9035B004B0D0C /* QRCoreData.sqlite-wal in Resources */,
 				E0CB7E921CD2507000F4F260 /* LaunchScreen.storyboard in Resources */,
 				E025E7641CDA372700CF37ED /* Alert_Fire Beep_2 secs.m4a in Resources */,
 				E0CB7E8F1CD2507000F4F260 /* Assets.xcassets in Resources */,
@@ -186,8 +187,7 @@
 				E0CB7E8A1CD2507000F4F260 /* Main.storyboard in Resources */,
 				E025E7601CDA33A400CF37ED /* 1_person_cheering.mp3 in Resources */,
 				E025E75E1CDA331E00CF37ED /* thunder_sound_3secs.m4a in Resources */,
-				E0E17C6E1CD9035B004B0D0C /* QRCoreData.sqlite in Resources */,
-				E0E17C6F1CD9035B004B0D0C /* QRCoreData.sqlite-shm in Resources */,
+				E0B57DFB1CDB90830039D5D5 /* QcdCoreData.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

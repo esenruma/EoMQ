@@ -68,14 +68,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ---------------------------------------------------
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite") // originally = "SingleViewCoreData.sqlite" - then changed to new name...
-        
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("QcdCoreData.sqlite") // originally = "SingleViewCoreData.sqlite" - then changed to new name... from imported sqlite files
+        // ---------------------------------------------------
         // ** Load the Already made DB from Simulator **
         if !NSFileManager.defaultManager().fileExistsAtPath(url.path!) {
             
-            let sourceSqliteURLs = [NSBundle.mainBundle().URLForResource("QRCoreData", withExtension: "sqlite")!, NSBundle.mainBundle().URLForResource("QRCoreData", withExtension: "sqlite-wal")!, NSBundle.mainBundle().URLForResource("QRCoreData", withExtension: "sqlite-shm")!]
+            let sourceSqliteURLs = [NSBundle.mainBundle().URLForResource("QcdCoreData", withExtension: "sqlite")!, NSBundle.mainBundle().URLForResource("QcdCoreData", withExtension: "sqlite-wal")!, NSBundle.mainBundle().URLForResource("QcdCoreData", withExtension: "sqlite-shm")!]
             
-            let destSqliteURLs = [self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite"), self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite-wal"), self.applicationDocumentsDirectory.URLByAppendingPathComponent("QRCoreData.sqlite-shm")]
+            let destSqliteURLs = [self.applicationDocumentsDirectory.URLByAppendingPathComponent("QcdCoreData.sqlite"), self.applicationDocumentsDirectory.URLByAppendingPathComponent("QcdCoreData.sqlite-wal"), self.applicationDocumentsDirectory.URLByAppendingPathComponent("QcdCoreData.sqlite-shm")]
             
             for index in 0 ..< sourceSqliteURLs.count {
                 do {

@@ -106,8 +106,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = UIImage(named: "finito icon_100*40px")
-        self.navigationController?.navigationBar.setBackgroundImage(image, forBarMetrics: .Default)
         
         // Add Questions x5
 //        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
