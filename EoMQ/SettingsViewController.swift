@@ -12,6 +12,8 @@ import AVFoundation
 
 var pickerSelection = 0 // Set as Default Gen. Random 
 
+var soundAnimationOption = 0
+
 class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIScrollViewDelegate {
 
     
@@ -27,6 +29,38 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     var audioPlayer : AVAudioPlayer?
     
+    @IBOutlet var soundChoiceLabel: UILabel!
+
+    
+// ---------------------------------------
+    @IBAction func soundOnOffButton(sender: AnyObject) {
+        // Default = off = 0 // (on = 1)
+        // switch btn 0/Off and 1/On
+        
+        if soundAnimationOption == 0 {
+            soundAnimationOption = 1
+            
+        } else if soundAnimationOption == 1 {
+            soundAnimationOption = 0
+        }
+        
+        // update message
+        soundLabelMessage()
+        
+        // Check if Working
+        print(soundAnimationOption)
+    }
+    
+// ---------------------------------------
+    func soundLabelMessage() {
+        
+        if soundAnimationOption == 0 {
+            self.soundChoiceLabel.text = "Off"
+            
+        } else if soundAnimationOption == 1 {
+            self.soundChoiceLabel.text = "On"
+        }
+    }
     
 // ---------------------------------------
     @IBAction func resetScoresButton(sender: AnyObject) {
@@ -61,14 +95,16 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 self.presentViewController(alert, animated: true, completion: nil)
                 
                 // ** Make Alert Sound **
-                do {
-                    let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-                    let url = NSURL(fileURLWithPath: path!)
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                    self.audioPlayer!.play()
-                } catch {
-                    print("Unable to Play Sound!!")
-                } // end do-try-catch
+                if soundAnimationOption == 1 {
+                    do {
+                        let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                        let url = NSURL(fileURLWithPath: path!)
+                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                        self.audioPlayer!.play()
+                    } catch {
+                        print("Unable to Play Sound!!")
+                    } // end do-try-catch
+                } // End IF on sound animation
                 
             } else {
                 // ** Nothing to Delete = Alert to inform = nothing there
@@ -84,14 +120,16 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 self.presentViewController(alert, animated: true, completion: nil)
                 
                 // ** Make Alert Sound **
-                do {
-                    let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-                    let url = NSURL(fileURLWithPath: path!)
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                    self.audioPlayer!.play()
-                } catch {
-                    print("Unable to Play Sound!!")
-                } // end do-try-catch
+                if soundAnimationOption == 1 {
+                    do {
+                        let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                        let url = NSURL(fileURLWithPath: path!)
+                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                        self.audioPlayer!.play()
+                    } catch {
+                        print("Unable to Play Sound!!")
+                    } // end do-try-catch
+                } // End IF on Sound animation
                 
             } // End IF
             
@@ -175,15 +213,19 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
 // ---------------------------------------
+    override func viewWillAppear(animated: Bool) {
+        // update Animated Sound Message
+        soundLabelMessage()
+    }
+    
+// ---------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.scrollView.contentSize.height = 667
         
-
-        // works to Add Image to Bar Button Item
-//        let homeImage = UIImage(named: "Home icon 40px")
-//        self.backButton.setBackgroundImage(homeImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default) // sets image to LT Bar Button Item: "button" = LEFT only
+        // update Animated Sound Message
+        soundLabelMessage()
         
     }
 

@@ -26,7 +26,9 @@ class QuestionsViewController: UIViewController {
 
     @IBOutlet var scoreLabel: UILabel!
 
-    @IBOutlet var questionLabel: UILabel!
+    @IBOutlet var questionLabel: UILabel! // make class 'InsetLabel' instead
+    
+    
     @IBOutlet var optionA: UIButton!
     @IBOutlet var optionB: UIButton!
     @IBOutlet var optionC: UIButton!
@@ -48,6 +50,20 @@ class QuestionsViewController: UIViewController {
     
     var audioPlayer : AVAudioPlayer?
 
+// ---------------------------------------
+    func alertSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("1_person_cheering", ofType: "mp3")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+    
+            } catch {
+                print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+            } // end do-try-catch
+        } // End If on sound animation
+    }
     
 // ---------------------------------------
     @IBAction func cancelButtonQ(sender: AnyObject) {
@@ -72,18 +88,23 @@ class QuestionsViewController: UIViewController {
             alert.addAction(cancelAction)
             self.presentViewController(alert, animated: true, completion: nil)
             
+            // Alert sound
+            alertSound()
+            
         } else {
             
             // ** Make sound-YiPPi !!! **
-            do {
-                let path = NSBundle.mainBundle().pathForResource("1_person_cheering", ofType: "mp3")
-                let url = NSURL(fileURLWithPath: path!)
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                self.audioPlayer!.play()
+            if soundAnimationOption == 1 {
+                do {
+                    let path = NSBundle.mainBundle().pathForResource("1_person_cheering", ofType: "mp3")
+                    let url = NSURL(fileURLWithPath: path!)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    self.audioPlayer!.play()
                 
-            } catch {
-                print("Unable to play 'Congratulations Kid Laughing' Sound!!")
-            } // end do-try-catch
+                } catch {
+                    print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+                } // end do-try-catch
+            } // End If on sound animation
             
             performSegueWithIdentifier("questionsToResults", sender: self)
         }
@@ -164,14 +185,16 @@ class QuestionsViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             
             // ** Make Alert Sound **
-            do {
-                let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-                let url = NSURL(fileURLWithPath: path!)
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                self.audioPlayer!.play()
-            } catch {
-                print("Unable to Play Sound!!")
-            } // end do-try-catch
+            if soundAnimationOption == 1 {
+                do {
+                    let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                    let url = NSURL(fileURLWithPath: path!)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    self.audioPlayer!.play()
+                } catch {
+                    print("Unable to Play Sound!!")
+                } // end do-try-catch
+            } // end If on Sound animation
             
         } else {
         
@@ -191,30 +214,33 @@ class QuestionsViewController: UIViewController {
                 totalCorrects = totalCorrects + 1
                 
                 // ** Make sound-CORRECT!! **
-                do {
-                    let path = NSBundle.mainBundle().pathForResource("Kid_Laughing", ofType: "mp3")
-                    let url = NSURL(fileURLWithPath: path!)
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                    self.audioPlayer!.play()
+                if soundAnimationOption == 1 {
+                    do {
+                        let path = NSBundle.mainBundle().pathForResource("Kid_Laughing", ofType: "mp3")
+                        let url = NSURL(fileURLWithPath: path!)
+                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                        self.audioPlayer!.play()
                     
-                } catch {
-                    print("Unable to play 'Congratulations Kid Laughing' Sound!!")
-                } // end do-try-catch
-                
+                    } catch {
+                        print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+                    } // end do-try-catch
+                } // end If on sound animation
             
             } else {
                 self.resultsLabel.text = "Sorry - that's wrong! \n It is... \(self.rightAnswerFromFetch)"
                 
                 // ** Make sound-WRONG!! **
-                do {
-                    let path = NSBundle.mainBundle().pathForResource("thunder_sound_3secs", ofType: "m4a")
-                    let url = NSURL(fileURLWithPath: path!)
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                    self.audioPlayer!.play()
+                if soundAnimationOption == 1 {
+                    do {
+                        let path = NSBundle.mainBundle().pathForResource("thunder_sound_3secs", ofType: "m4a")
+                        let url = NSURL(fileURLWithPath: path!)
+                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                        self.audioPlayer!.play()
                     
-                } catch {
-                    print("Unable to play 'Congratulations Kid Laughing' Sound!!")
-                } // end do-try-catch
+                    } catch {
+                        print("Unable to play 'Congratulations Kid Laughing' Sound!!")
+                    } // end do-try-catch
+                } // end If on sound animation
                 
             } // end IF
         

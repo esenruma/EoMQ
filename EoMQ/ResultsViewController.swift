@@ -116,15 +116,16 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
             // self.imageView.image = UIImage() // ** No Need?? **
             
             // ** Make 'mmm' Sound **
-            do {
-                let path = NSBundle.mainBundle().pathForResource("thought_sounds_1sec", ofType: "m4a")
-                let url = NSURL(fileURLWithPath: path!)
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                self.audioPlayer!.play()
-            } catch {
-                print("Unable to Play Sound!!")
-            } // end do-try-catch
-            
+            if soundAnimationOption == 1 {
+                do {
+                    let path = NSBundle.mainBundle().pathForResource("thought_sounds_1sec", ofType: "m4a")
+                    let url = NSURL(fileURLWithPath: path!)
+                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                    self.audioPlayer!.play()
+                } catch {
+                    print("Unable to Play Sound!!")
+                } // end do-try-catch
+            } // end IF on sound animation
             
             // GoTo Home Screen
             performSegueWithIdentifier("resultsToHome", sender: self)
@@ -144,14 +145,16 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.presentViewController(alert, animated: true, completion: nil)
         
         // ** Make Alert Sound **
-        do {
-            let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-            let url = NSURL(fileURLWithPath: path!)
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-            self.audioPlayer!.play()
-        } catch {
-            print("Unable to Play Sound!!")
-        } // end do-try-catch
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+            } catch {
+                print("Unable to Play Sound!!")
+            } // end do-try-catch
+        } // end IF on sound animation
     }
     
 // ---------------------------------------
