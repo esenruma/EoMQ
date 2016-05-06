@@ -490,7 +490,7 @@
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="10" tighteningFactorForTruncation="0.0"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="20" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -999,6 +999,6 @@ Results</string>
         <image name="blank image holder" width="203" height="203"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2Fy-Od-BG5"/>
+        <segue reference="ekG-ak-5DI"/>
     </inferredMetricsTieBreakers>
 </document>

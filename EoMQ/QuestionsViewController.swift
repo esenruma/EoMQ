@@ -16,7 +16,7 @@ var totalCorrects = 0   // To Hold Score-Correct 'SubmitButton'
 
 // Values Set from StartButton - HomeVC
 var questionsListNumbers : [String] = [] // =5 questions // For Rn(minusPast)
-var randomRange = Int() // from 0 - 4 = 5 questions // For Rn(minusPast)
+var randomRange = Int() // from 0 - 50 = 51 questions // For Rn(minusPast)
 // ------------------------------
 
 
@@ -358,8 +358,8 @@ class QuestionsViewController: UIViewController {
         
         if pickerSelection == 0 {
             // Gen. RN No.
-            var randomNumber = arc4random_uniform(6) // 0-5
-            randomNumber += 1 // 1-5 i.e. questions from 1 to 5
+            var randomNumber = arc4random_uniform(52) // 0-51
+            randomNumber += 1 // 1-51 i.e. questions from 1 to 51
             let randomNoString = String(randomNumber) // convert to Str for Predicate CoreD
         
             // ** Fetch
@@ -415,7 +415,7 @@ class QuestionsViewController: UIViewController {
             
             // RN No.(minus Past)
             let convertedIntRandomRange = UInt32(randomRange) // Int: 5 - converted Int to UInt32 for arc4Random
-            let randomNumber = arc4random_uniform(convertedIntRandomRange) // 0-4 as UInt32
+            let randomNumber = arc4random_uniform(convertedIntRandomRange) // 0-50=51 in Indx as UInt32
             
             let selectedNumberFromArray = questionsListNumbers[Int(randomNumber)] // convert UInt32 to Int to use in Array Indx... to Give Value as.."selectedNumberFromArray"
             
@@ -478,7 +478,6 @@ class QuestionsViewController: UIViewController {
             randomRange = randomRange - 1
             
         } // end IF pickerSelection == 1
-        
     }
 
 // ---------------------------------------
