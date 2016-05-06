@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import AVFoundation
 
+
 var pickerSelection = 0 // Set as Default Gen. Random 
 
 var soundAnimationOption = 0
@@ -36,7 +37,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     func clickSound() {
         if soundAnimationOption == 1 {
             do {
-                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let path = NSBundle.mainBundle().pathForResource("Click", ofType: "wav")
                 let url = NSURL(fileURLWithPath: path!)
                 self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.audioPlayer!.play()
@@ -45,6 +46,20 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 print("Unable to play 'Click' Sound!!")
             } // end do-try-catch
         } // End If on sound animation
+    }
+    
+// ---------------------------------------
+    func alertSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Alert_2secs", ofType: "m4a")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+            } catch {
+                print("Unable to Play Sound!!")
+            } // end do-try-catch
+        } // End IF on sound animation
     }
     
 // ---------------------------------------
@@ -115,16 +130,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 self.presentViewController(alert, animated: true, completion: nil)
                 
                 // ** Make Alert Sound **
-                if soundAnimationOption == 1 {
-                    do {
-                        let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-                        let url = NSURL(fileURLWithPath: path!)
-                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                        self.audioPlayer!.play()
-                    } catch {
-                        print("Unable to Play Sound!!")
-                    } // end do-try-catch
-                } // End IF on sound animation
+                alertSound()
                 
             } else {
                 // ** Nothing to Delete = Alert to inform = nothing there
@@ -140,16 +146,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 self.presentViewController(alert, animated: true, completion: nil)
                 
                 // ** Make Alert Sound **
-                if soundAnimationOption == 1 {
-                    do {
-                        let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-                        let url = NSURL(fileURLWithPath: path!)
-                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                        self.audioPlayer!.play()
-                    } catch {
-                        print("Unable to Play Sound!!")
-                    } // end do-try-catch
-                } // End IF on Sound animation
+                alertSound()
                 
             } // End IF
             

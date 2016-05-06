@@ -55,7 +55,7 @@ class QuestionsViewController: UIViewController {
     func clickSound() {
         if soundAnimationOption == 1 {
             do {
-                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let path = NSBundle.mainBundle().pathForResource("Click", ofType: "wav")
                 let url = NSURL(fileURLWithPath: path!)
                 self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.audioPlayer!.play()
@@ -70,15 +70,58 @@ class QuestionsViewController: UIViewController {
     func alertSound() {
         if soundAnimationOption == 1 {
             do {
-                let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
+                let path = NSBundle.mainBundle().pathForResource("Alert_2secs", ofType: "m4a")
                 let url = NSURL(fileURLWithPath: path!)
                 self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.audioPlayer!.play()
     
             } catch {
-                print("Unable to play 'Alert' Sound!!")
+                print("Unable to play 'Alert_2secs' Sound!!")
             } // end do-try-catch
         } // End If on sound animation
+    }
+    
+// ---------------------------------------
+    func cheeringFinished() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Person_cheering", ofType: "mp3")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Person_cheering' Sound!!")
+            } // end do-try-catch
+        } // End If on sound animation
+    }
+// ---------------------------------------
+    func correctSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Correct_KidLaugh", ofType: "mp3")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Correct_KidLaugh' Sound!!")
+            } // end do-try-catch
+        } // end If on sound animation
+    }
+// ---------------------------------------
+    func wrongSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Wrong_thunder_secs", ofType: "m4a")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Wrong_thunder_secs' Sound!!")
+            } // end do-try-catch
+        } // end If on sound animation
     }
     
 // ---------------------------------------
@@ -113,17 +156,7 @@ class QuestionsViewController: UIViewController {
         } else {
             
             // ** Make sound-YiPPi !!! **
-            if soundAnimationOption == 1 {
-                do {
-                    let path = NSBundle.mainBundle().pathForResource("1_person_cheering", ofType: "mp3")
-                    let url = NSURL(fileURLWithPath: path!)
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                    self.audioPlayer!.play()
-                
-                } catch {
-                    print("Unable to play 'Congratulations Kid Laughing' Sound!!")
-                } // end do-try-catch
-            } // End If on sound animation
+            cheeringFinished()
             
             performSegueWithIdentifier("questionsToResults", sender: self)
         }
@@ -208,16 +241,7 @@ class QuestionsViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             
             // ** Make Alert Sound **
-            if soundAnimationOption == 1 {
-                do {
-                    let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-                    let url = NSURL(fileURLWithPath: path!)
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                    self.audioPlayer!.play()
-                } catch {
-                    print("Unable to Play Sound!!")
-                } // end do-try-catch
-            } // end If on Sound animation
+            alertSound()
             
         } else {
         
@@ -241,17 +265,7 @@ class QuestionsViewController: UIViewController {
                 totalCorrects = totalCorrects + 1
                 
                 // ** Make sound-CORRECT!! **
-                if soundAnimationOption == 1 {
-                    do {
-                        let path = NSBundle.mainBundle().pathForResource("Kid_Laughing", ofType: "mp3")
-                        let url = NSURL(fileURLWithPath: path!)
-                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                        self.audioPlayer!.play()
-                    
-                    } catch {
-                        print("Unable to play 'Congratulations Kid Laughing' Sound!!")
-                    } // end do-try-catch
-                } // end If on sound animation
+                correctSound()
             
             } else {
                 self.resultsLabel.hidden = false
@@ -260,17 +274,7 @@ class QuestionsViewController: UIViewController {
                 
                 
                 // ** Make sound-WRONG!! **
-                if soundAnimationOption == 1 {
-                    do {
-                        let path = NSBundle.mainBundle().pathForResource("thunder_sound_3secs", ofType: "m4a")
-                        let url = NSURL(fileURLWithPath: path!)
-                        self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                        self.audioPlayer!.play()
-                    
-                    } catch {
-                        print("Unable to play 'Congratulations Kid Laughing' Sound!!")
-                    } // end do-try-catch
-                } // end If on sound animation
+                wrongSound()
                 
             } // end IF
         
@@ -297,14 +301,7 @@ class QuestionsViewController: UIViewController {
         print(selectedAnswer)
         
         // ** Make Sound
-        do {
-            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
-            let url = NSURL(fileURLWithPath: path!)
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-            self.audioPlayer!.play()
-        } catch {
-            print("Unable to Play Sound!!")
-        } // end do-try-catch
+        clickSound()
         
     } // End Func
     
@@ -320,14 +317,7 @@ class QuestionsViewController: UIViewController {
         print(selectedAnswer)
         
         // ** Make Sound
-        do {
-            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
-            let url = NSURL(fileURLWithPath: path!)
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-            self.audioPlayer!.play()
-        } catch {
-            print("Unable to Play Sound!!")
-        } // end do-try-catch
+        clickSound()
         
     } // End Func
 
@@ -343,14 +333,7 @@ class QuestionsViewController: UIViewController {
         print(selectedAnswer)
         
         // ** Make Sound
-        do {
-            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
-            let url = NSURL(fileURLWithPath: path!)
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-            self.audioPlayer!.play()
-        } catch {
-            print("Unable to Play Sound!!")
-        } // end do-try-catch
+        clickSound()
         
     } // End Func
     
@@ -366,14 +349,7 @@ class QuestionsViewController: UIViewController {
         print(selectedAnswer)
         
         // ** Make Sound
-        do {
-            let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
-            let url = NSURL(fileURLWithPath: path!)
-            self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-            self.audioPlayer!.play()
-        } catch {
-            print("Unable to Play Sound!!")
-        } // end do-try-catch
+        clickSound()
         
     } // End Func
     

@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func clickSound() {
         if soundAnimationOption == 1 {
             do {
-                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let path = NSBundle.mainBundle().pathForResource("Click", ofType: "wav")
                 let url = NSURL(fileURLWithPath: path!)
                 self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.audioPlayer!.play()
@@ -129,31 +129,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // Add Questions x5
-//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let context: NSManagedObjectContext = appDel.managedObjectContext
-//        
-//        let addNewQuestion = NSEntityDescription.insertNewObjectForEntityForName("QuestionsDB", inManagedObjectContext: context) as! QuestionsDB
-//        
-//        addNewQuestion.number = "5"
-//        addNewQuestion.question = "What is Max Weber 1864 - 1920, associated with?"
-//        
-//        addNewQuestion.optionA = "Bureaucracy"
-//        addNewQuestion.optionB = "Tradition "
-//        addNewQuestion.optionC = "Military"
-//        addNewQuestion.optionD = "Communication"
-//        
-//        addNewQuestion.correctAnswer = "Bureaucracy"
-//        
-//        do {
-//            try context.save()
-//            print("Saved !!!")
-//
-//        } catch {
-//            print("Error Saving Data to CoreD")
-//        }
-
     }
 
     override func didReceiveMemoryWarning() {

@@ -36,7 +36,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     func clickSound() {
         if soundAnimationOption == 1 {
             do {
-                let path = NSBundle.mainBundle().pathForResource("Lamp_switch1", ofType: "wav")
+                let path = NSBundle.mainBundle().pathForResource("Click", ofType: "wav")
                 let url = NSURL(fileURLWithPath: path!)
                 self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 self.audioPlayer!.play()
@@ -46,7 +46,36 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
             } // end do-try-catch
         } // End If on sound animation
     }
- 
+    
+// ---------------------------------------
+    func alertSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("Alert_2secs", ofType: "m4a")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+                
+            } catch {
+                print("Unable to play 'Alert_2secs' Sound!!")
+            } // end do-try-catch
+        } // End If on sound animation
+    }
+    
+// ---------------------------------------
+    func thoughtSound() {
+        if soundAnimationOption == 1 {
+            do {
+                let path = NSBundle.mainBundle().pathForResource("thought_sounds_1sec", ofType: "m4a")
+                let url = NSURL(fileURLWithPath: path!)
+                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                self.audioPlayer!.play()
+            } catch {
+                print("Unable to Play Sound!!")
+            } // end do-try-catch
+        } // end IF on sound animation
+    }
+    
 // ---------------------------------------
     @IBAction func cancelButton(sender: AnyObject) {
         clickSound()
@@ -136,16 +165,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
             // self.imageView.image = UIImage() // ** No Need?? **
             
             // ** Make 'mmm' Sound **
-            if soundAnimationOption == 1 {
-                do {
-                    let path = NSBundle.mainBundle().pathForResource("thought_sounds_1sec", ofType: "m4a")
-                    let url = NSURL(fileURLWithPath: path!)
-                    self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                    self.audioPlayer!.play()
-                } catch {
-                    print("Unable to Play Sound!!")
-                } // end do-try-catch
-            } // end IF on sound animation
+            thoughtSound()
             
             // GoTo Home Screen
             performSegueWithIdentifier("resultsToHome", sender: self)
@@ -165,16 +185,8 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.presentViewController(alert, animated: true, completion: nil)
         
         // ** Make Alert Sound **
-        if soundAnimationOption == 1 {
-            do {
-                let path = NSBundle.mainBundle().pathForResource("Alert_Fire Beep_2 secs", ofType: "m4a")
-                let url = NSURL(fileURLWithPath: path!)
-                self.audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                self.audioPlayer!.play()
-            } catch {
-                print("Unable to Play Sound!!")
-            } // end do-try-catch
-        } // end IF on sound animation
+        alertSound()
+
     }
     
 // ---------------------------------------
