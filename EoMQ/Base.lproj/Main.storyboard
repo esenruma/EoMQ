@@ -490,7 +490,7 @@
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="20" tighteningFactorForTruncation="0.0"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" firstLineHeadIndent="20" headIndent="20" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -616,11 +616,20 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lite_1" translatesAutoresizingMaskIntoConstraints="NO" id="Avf-la-1o8">
+                                        <rect key="frame" x="295" y="524" width="10" height="10"/>
+                                        <color key="backgroundColor" red="0.43921568630000002" green="0.75294117650000003" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="AJP-zb-Qkt"/>
+                                            <constraint firstAttribute="width" constant="10" id="aIf-hX-kW1"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nuZ-wz-3O1" firstAttribute="trailing" secondItem="Nyz-fX-u3u" secondAttribute="trailing" id="4qi-0M-I55"/>
                                     <constraint firstItem="wtR-RS-7m0" firstAttribute="top" secondItem="nuZ-wz-3O1" secondAttribute="bottom" constant="77" id="86x-TJ-ewM"/>
                                     <constraint firstItem="Eqs-2M-S49" firstAttribute="top" secondItem="NH0-A0-pYZ" secondAttribute="top" constant="8" id="9rM-72-IjU"/>
+                                    <constraint firstItem="wtR-RS-7m0" firstAttribute="top" secondItem="Avf-la-1o8" secondAttribute="bottom" constant="3" id="BWf-Vo-VHD"/>
                                     <constraint firstItem="nuZ-wz-3O1" firstAttribute="leading" secondItem="Nyz-fX-u3u" secondAttribute="leading" id="DFQ-kL-ZDK"/>
                                     <constraint firstAttribute="bottom" secondItem="3FF-M4-S9i" secondAttribute="bottom" constant="488" id="GOa-hm-c4d"/>
                                     <constraint firstItem="Nyz-fX-u3u" firstAttribute="trailing" secondItem="o9w-ym-7lR" secondAttribute="trailing" id="INE-yD-TVl"/>
@@ -633,6 +642,7 @@
                                     <constraint firstItem="3FF-M4-S9i" firstAttribute="centerX" secondItem="KqX-t3-nBk" secondAttribute="centerX" id="Yot-nG-56y"/>
                                     <constraint firstItem="Nyz-fX-u3u" firstAttribute="top" secondItem="o9w-ym-7lR" secondAttribute="bottom" constant="8" symbolic="YES" id="aED-YK-MH5"/>
                                     <constraint firstItem="6sF-wT-eVe" firstAttribute="top" secondItem="NH0-A0-pYZ" secondAttribute="top" constant="11" id="bGf-W8-HGa"/>
+                                    <constraint firstAttribute="trailing" secondItem="Avf-la-1o8" secondAttribute="trailing" constant="78" id="bcI-Rn-twE"/>
                                     <constraint firstItem="o9w-ym-7lR" firstAttribute="top" secondItem="Fij-EB-ggY" secondAttribute="bottom" constant="8" symbolic="YES" id="cz1-nc-2vo"/>
                                     <constraint firstAttribute="trailing" secondItem="AHc-Xw-z6Q" secondAttribute="trailing" constant="20" id="dKd-ha-c1j"/>
                                     <constraint firstItem="3FF-M4-S9i" firstAttribute="leading" secondItem="NH0-A0-pYZ" secondAttribute="leading" constant="1" id="eBa-aB-z52"/>
@@ -669,6 +679,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="cancelButton" destination="rG9-h3-gYT" id="0It-1F-scO"/>
+                        <outlet property="imageViewLiteAnimation" destination="Avf-la-1o8" id="8xt-4Q-Q4n"/>
                         <outlet property="next" destination="AHc-Xw-z6Q" id="X62-4E-WTl"/>
                         <outlet property="nextLabelForHighlight" destination="wtR-RS-7m0" id="DJo-LU-V27"/>
                         <outlet property="optionA" destination="KqX-t3-nBk" id="wTc-eK-a1f"/>
@@ -986,6 +997,7 @@ Results</string>
         <image name="Finito 2_100x40px" width="204" height="81"/>
         <image name="Home icon" width="203" height="203"/>
         <image name="Images Icon" width="204" height="161"/>
+        <image name="Lite_1" width="104" height="104"/>
         <image name="Next-Skip icon" width="203" height="81"/>
         <image name="Red 3D globe" width="202" height="202"/>
         <image name="Score" width="206" height="60"/>

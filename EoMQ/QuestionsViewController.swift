@@ -50,6 +50,11 @@ class QuestionsViewController: UIViewController {
     
     var audioPlayer : AVAudioPlayer?
 
+    // ** Animation set up **
+    @IBOutlet var imageViewLiteAnimation: UIImageView!
+    var isAnimating = false
+    var counter = 1
+    var timer = NSTimer()
     
 // ---------------------------------------
     func clickSound() {
@@ -190,6 +195,11 @@ class QuestionsViewController: UIViewController {
         // Next Button Highlighter Clear
         self.nextLabelForHighlight.backgroundColor = UIColor.clearColor()
         
+        // Stop Lite Animation
+        timer.invalidate()
+        isAnimating = false
+        self.imageViewLiteAnimation.image = UIImage()
+            
         // Reset ifOptionSelected - back to "0"
         self.ifOptionSelected = 0
         
@@ -280,13 +290,34 @@ class QuestionsViewController: UIViewController {
         
             // Highlight next-STEP toDo
             self.nextLabelForHighlight.backgroundColor = UIColor(red: 190/255, green: 30/255, blue: 45/255, alpha: 1.0)
+            
+            // ** Animation Timer **
+            if isAnimating == false {
+                timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(QuestionsViewController.liteAnimation), userInfo: nil, repeats: true)
+                isAnimating = true
+            }
+            // ** Goto (Click) Next Button to Stop Timer
 
+            
             // Score Update
             self.scoreLabel.text = "\(totalCorrects) correct out of \(totalQuestions)"
             print(totalCorrects) ; print(totalQuestions)
             
         } // end 1st IF
     } // End Func 
+    
+// --------------Animation Lite-----------------
+    func liteAnimation() {
+        
+        if counter == 10 {
+            counter = 1
+        } else {
+            counter += 1
+        }
+        
+        self.imageViewLiteAnimation.image = UIImage(named: "Lite_\(counter)")
+        
+    }
     
 // --------------Option Selections-----------------
     @IBAction func answerAAction(sender: AnyObject) {

@@ -6,6 +6,11 @@
 //  Copyright © 2016 esenruma. All rights reserved.
 //
 
+// ============== Color Scheme =======================
+// Drk.Blue: 2, 105, 163. Med.Blue: 31, 147, 242. Llit.Blue: 112, 192, 237
+// Black, Grey, White, Yellow, Red(190, 30, 45)
+// ====================================================
+
 import UIKit
 import CoreData
 import AVFoundation
