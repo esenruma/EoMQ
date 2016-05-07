@@ -21,6 +21,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     var audioPlayer : AVAudioPlayer?
     
+    // Animation 2 Yellow lines
+    @IBOutlet var lineImage_1: UIImageView!
+    @IBOutlet var lineImage_2: UIImageView!
+    
+    
+// -----------Vertical Lines Animation----------
+    override func viewDidLayoutSubviews() {
+        // Lines
+        self.lineImage_1.center = CGPointMake(self.lineImage_1.center.x - 400, self.lineImage_1.center.y)
+        self.lineImage_2.center = CGPointMake(self.lineImage_2.center.x + 400, self.lineImage_2.center.y)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        UIView.animateWithDuration(1) {
+            // Lines
+            self.lineImage_1.center = CGPointMake(self.lineImage_1.center.x + 400, self.lineImage_1.center.y)
+            self.lineImage_2.center = CGPointMake(self.lineImage_2.center.x - 400, self.lineImage_2.center.y)
+         }
+    }
+    
 // ---------------------------------------
     func clickSound() {
         if soundAnimationOption == 1 {

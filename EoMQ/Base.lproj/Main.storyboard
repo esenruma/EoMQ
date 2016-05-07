@@ -171,6 +171,20 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G9T-FJ-5jf">
+                                <rect key="frame" x="314" y="200" width="2" height="427"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.86666666670000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="qHa-71-YU9"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DBp-6N-0GL">
+                                <rect key="frame" x="60" y="200" width="2" height="427"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.86666666670000003" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="kOK-H6-Bac"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.75294117650000003" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -192,17 +206,25 @@
                             <constraint firstItem="LXC-F4-pgi" firstAttribute="top" secondItem="y2S-aj-fwq" secondAttribute="bottom" constant="4" id="WQl-Sd-kGk"/>
                             <constraint firstItem="PAO-A5-Zif" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z9Q-JF-6Qq"/>
                             <constraint firstItem="2xX-wi-8El" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="de1-CK-Hbv"/>
+                            <constraint firstItem="Khz-yv-Xme" firstAttribute="leading" secondItem="DBp-6N-0GL" secondAttribute="trailing" constant="8" id="dfA-h1-y9D"/>
                             <constraint firstItem="dvV-oY-FLl" firstAttribute="top" secondItem="y2S-aj-fwq" secondAttribute="bottom" constant="43" id="eKM-XM-V2e"/>
                             <constraint firstItem="y2S-aj-fwq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fwB-5t-gam"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2xX-wi-8El" secondAttribute="trailing" constant="-20" id="gXo-je-hSe"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Khz-yv-Xme" secondAttribute="bottom" constant="40" id="j1L-JF-bXN"/>
                             <constraint firstItem="GUn-y8-HCT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k7o-KD-4C8"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="DBp-6N-0GL" secondAttribute="bottom" constant="40" id="kLH-1M-h8Y"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="G9T-FJ-5jf" secondAttribute="bottom" constant="40" id="nlV-9t-cYO"/>
+                            <constraint firstItem="G9T-FJ-5jf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="200" id="tfY-2m-vd0"/>
+                            <constraint firstItem="DBp-6N-0GL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="200" id="u8b-UR-gfG"/>
                             <constraint firstItem="I9X-9Q-Sgd" firstAttribute="top" secondItem="y2S-aj-fwq" secondAttribute="bottom" constant="20" id="uG0-Tv-HSX"/>
+                            <constraint firstItem="G9T-FJ-5jf" firstAttribute="leading" secondItem="Khz-yv-Xme" secondAttribute="trailing" constant="8" id="xhz-EJ-CX0"/>
                             <constraint firstItem="Khz-yv-Xme" firstAttribute="top" secondItem="5H0-si-aY4" secondAttribute="bottom" constant="5" id="zU9-DK-nII"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="lineImage_1" destination="DBp-6N-0GL" id="AwC-6I-VVh"/>
+                        <outlet property="lineImage_2" destination="G9T-FJ-5jf" id="Tea-bS-y70"/>
                         <outlet property="randomTypeLabel" destination="GUn-y8-HCT" id="1Jz-3f-MX2"/>
                         <outlet property="tableView" destination="Khz-yv-Xme" id="CJn-A7-Krd"/>
                         <segue destination="D41-2I-TvR" kind="presentation" identifier="toQuestions" modalTransitionStyle="crossDissolve" id="kTb-Av-9gk"/>
@@ -489,7 +511,7 @@
                                             <fragment content="Question">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="1" firstLineHeadIndent="20" headIndent="20" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>

@@ -50,11 +50,12 @@ class QuestionsViewController: UIViewController {
     
     var audioPlayer : AVAudioPlayer?
 
-    // ** Animation set up **
+    // ** Lite Animation set up **
     @IBOutlet var imageViewLiteAnimation: UIImageView!
     var isAnimating = false
     var counter = 1
     var timer = NSTimer()
+    
     
 // ---------------------------------------
     func clickSound() {
