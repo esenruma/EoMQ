@@ -29,16 +29,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 // -----------Vertical Lines Animation----------
     override func viewDidLayoutSubviews() {
         // Lines
-        self.lineImage_1.center = CGPointMake(self.lineImage_1.center.x - 400, self.lineImage_1.center.y)
-        self.lineImage_2.center = CGPointMake(self.lineImage_2.center.x + 400, self.lineImage_2.center.y)
+        self.lineImage_1.center = CGPointMake(self.lineImage_1.center.x + 700, self.lineImage_1.center.y)
+        self.lineImage_2.center = CGPointMake(self.lineImage_2.center.x - 700, self.lineImage_2.center.y)
     }
     
     override func viewDidAppear(animated: Bool) {
         
-        UIView.animateWithDuration(1) {
+        UIView.animateWithDuration(0.9) {
             // Lines
-            self.lineImage_1.center = CGPointMake(self.lineImage_1.center.x + 400, self.lineImage_1.center.y)
-            self.lineImage_2.center = CGPointMake(self.lineImage_2.center.x - 400, self.lineImage_2.center.y)
+            self.lineImage_1.center = CGPointMake(self.lineImage_1.center.x - 700, self.lineImage_1.center.y)
+            self.lineImage_2.center = CGPointMake(self.lineImage_2.center.x + 700, self.lineImage_2.center.y)
          }
     }
     
@@ -70,8 +70,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         clickSound()
         
-        questionsListNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51"] // Total and exact in CoreD
-        randomRange = 51 // 0 - 50 = 51 // ...to match CoreD list of no.s // match index in "questionsListNumbers"
+        questionsListNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"] // Total and exact in CoreD
+        randomRange = 100 // 0 indx - 99 indx = 100 // ...to match CoreD list of no.s // match index in "questionsListNumbers"
         
         performSegueWithIdentifier("toQuestions", sender: self)
     }
@@ -140,10 +140,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // -------Rn 'Type' Label-------------
         if pickerSelection == 0 {
-            self.randomTypeLabel.text = "Genernal Random \n Option Selected"
+            self.randomTypeLabel.text = "General Random\nOption Selected"
         } else if pickerSelection == 1 {
-            self.randomTypeLabel.text = "Random (minus)Previous \n Option Selected"
+            self.randomTypeLabel.text = "Random(-)Previous\nOption Selected"
         }
+        
     }
     
 // ---------------------------------------

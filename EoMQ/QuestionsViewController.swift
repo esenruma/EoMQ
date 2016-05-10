@@ -15,10 +15,9 @@ var totalQuestions = 0  // To Hold Score-Total 'SubmitButton'
 var totalCorrects = 0   // To Hold Score-Correct 'SubmitButton'
 
 // Values Set from StartButton - HomeVC
-var questionsListNumbers : [String] = [] // =5 questions // For Rn(minusPast)
-var randomRange = Int() // from 0 - 50 = 51 questions // For Rn(minusPast)
+var questionsListNumbers : [String] = [] // = 100 questions // For Rn(minusPast)
+var randomRange = Int() // from 0 - 99 = 100 questions // For Rn(minusPast)
 // ------------------------------
-
 
 class QuestionsViewController: UIViewController {
     
@@ -39,8 +38,6 @@ class QuestionsViewController: UIViewController {
   
     @IBOutlet var next: UIButton!
     
-    @IBOutlet var cancelButton: UIBarButtonItem!
-    
     @IBOutlet var nextLabelForHighlight: UILabel!
     
     var rightAnswerFromFetch = String() // store String Correct Answer from Fetch-To compare
@@ -56,6 +53,25 @@ class QuestionsViewController: UIViewController {
     var counter = 1
     var timer = NSTimer()
     
+    // ** Lines Animation **
+    @IBOutlet weak var yellLine1: UIImageView!
+    @IBOutlet weak var yellLine2: UIImageView!
+    
+// -----------Vertical Lines Animation--------------
+    override func viewDidLayoutSubviews() {
+        // Lines
+        self.yellLine1.center = CGPointMake(self.yellLine1.center.x + 700, self.yellLine1.center.y)
+        self.yellLine2.center = CGPointMake(self.yellLine2.center.x - 700, self.yellLine2.center.y)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        UIView.animateWithDuration(0.9) {
+            // Lines
+            self.yellLine1.center = CGPointMake(self.yellLine1.center.x - 700, self.yellLine1.center.y)
+            self.yellLine2.center = CGPointMake(self.yellLine2.center.x + 700, self.yellLine2.center.y)
+        }
+    }
     
 // ---------------------------------------
     func clickSound() {
@@ -131,15 +147,14 @@ class QuestionsViewController: UIViewController {
     }
     
 // ---------------------------------------
-    @IBAction func cancelButtonQ(sender: AnyObject) {
-        
+    @IBAction func homeButton(sender: AnyObject) {
         clickSound()
         
         totalCorrects = 0
         totalQuestions = 0
         
         performSegueWithIdentifier("QuestionsToHome", sender: self)
-        // self.dismissViewControllerAnimated(true, completion: nil) // Not use-'Dismiss' causes not questions to show after "Start"button starts process again
+        // self.dismissViewControllerAnimated(true, completion: nil) // Not use-'Dismiss' causes: "no" questions to show after "Start"button starts process again
     }
     
 // ---------------------------------------
@@ -271,7 +286,7 @@ class QuestionsViewController: UIViewController {
                 
                 self.resultsLabel.hidden = false
                 self.resultsLabel.backgroundColor = UIColor.yellowColor()
-                self.resultsLabel.text = "That's RIGHT !!!"
+                self.resultsLabel.text = "'✔'  RIGHT!!!"
                 
                 totalCorrects = totalCorrects + 1
                 
@@ -281,7 +296,7 @@ class QuestionsViewController: UIViewController {
             } else {
                 self.resultsLabel.hidden = false
                 self.resultsLabel.backgroundColor = UIColor.yellowColor()
-                self.resultsLabel.text = "Wrong! \n It is... '\(self.rightAnswerFromFetch)'"
+                self.resultsLabel.text = "'✖'  Wrong! It's- \n'\(self.rightAnswerFromFetch)'"
                 
                 
                 // ** Make sound-WRONG!! **
@@ -315,9 +330,7 @@ class QuestionsViewController: UIViewController {
         } else {
             counter += 1
         }
-        
         self.imageViewLiteAnimation.image = UIImage(named: "Lite_\(counter)")
-        
     }
     
 // --------------Option Selections-----------------
@@ -330,7 +343,6 @@ class QuestionsViewController: UIViewController {
         
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionA.titleLabel?.text)!
-        print(selectedAnswer)
         
         // ** Make Sound
         clickSound()
@@ -346,7 +358,6 @@ class QuestionsViewController: UIViewController {
         
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionB.titleLabel?.text)!
-        print(selectedAnswer)
         
         // ** Make Sound
         clickSound()
@@ -362,7 +373,6 @@ class QuestionsViewController: UIViewController {
         
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionC.titleLabel?.text)!
-        print(selectedAnswer)
         
         // ** Make Sound
         clickSound()
@@ -378,7 +388,6 @@ class QuestionsViewController: UIViewController {
         
         // ** Pass this choice to VAR 'selectedAnswer'
         self.selectedAnswer = (optionD.titleLabel?.text)!
-        print(selectedAnswer)
         
         // ** Make Sound
         clickSound()
@@ -390,8 +399,8 @@ class QuestionsViewController: UIViewController {
         
         if pickerSelection == 0 {
             // Gen. RN No.
-            var randomNumber = arc4random_uniform(52) // 0-51
-            randomNumber += 1 // 1-51 i.e. questions from 1 to 51
+            var randomNumber = arc4random_uniform(101) // 0-100
+            randomNumber += 1 // 1-100 i.e. questions from 1 to 100
             let randomNoString = String(randomNumber) // convert to Str for Predicate CoreD
         
             // ** Fetch
@@ -446,8 +455,8 @@ class QuestionsViewController: UIViewController {
         else if pickerSelection == 1 { // Rn.No (minus Past Ones)
             
             // RN No.(minus Past)
-            let convertedIntRandomRange = UInt32(randomRange) // Int: 5 - converted Int to UInt32 for arc4Random
-            let randomNumber = arc4random_uniform(convertedIntRandomRange) // 0-50=51 in Indx as UInt32
+            let convertedIntRandomRange = UInt32(randomRange) // Int: 100 - converted Int to UInt32 for arc4Random
+            let randomNumber = arc4random_uniform(convertedIntRandomRange) // 0-99=100 in Indx as UInt32
             
             let selectedNumberFromArray = questionsListNumbers[Int(randomNumber)] // convert UInt32 to Int to use in Array Indx... to Give Value as.."selectedNumberFromArray"
             
@@ -497,7 +506,6 @@ class QuestionsViewController: UIViewController {
                             self.rightAnswerFromFetch = correct // ** Use with SubmitButton
                         }
                         
-                        
                     } // end For..in..loop
                     
                 } // end IF
@@ -510,7 +518,7 @@ class QuestionsViewController: UIViewController {
             randomRange = randomRange - 1
             
         } // end IF pickerSelection == 1
-    }
+    } // End FUNC
 
 // ---------------------------------------
     override func viewWillAppear(animated: Bool) {
@@ -525,7 +533,7 @@ class QuestionsViewController: UIViewController {
         // results Label = Hidden
         self.resultsLabel.hidden = true
         
-    } // end Func
+    } // End FUNC
     
 // ---------------------------------------
     override func viewDidLoad() {
@@ -537,9 +545,6 @@ class QuestionsViewController: UIViewController {
         // ** Call Questions at Random **
         getRandomQuestion()
         
-        // ** Set image to Left Bar Button Item
-        let homeImage = UIImage(named: "Home icon 40px")
-        self.cancelButton.setBackgroundImage(homeImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
     }
 
     override func didReceiveMemoryWarning() {

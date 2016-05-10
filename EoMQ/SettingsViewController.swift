@@ -37,6 +37,25 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     @IBOutlet var soundChoiceLabel: UILabel!
     
+    // ** Animation **
+    
+    @IBOutlet weak var yellowLine1: UIImageView!
+    @IBOutlet weak var yellowLine2: UIImageView!
+    
+// --------------Animation----------------
+    override func viewDidLayoutSubviews() {
+        
+        self.yellowLine1.center = CGPointMake(self.yellowLine1.center.x + 700, self.yellowLine1.center.y)
+        self.yellowLine2.center = CGPointMake(self.yellowLine2.center.x - 700, self.yellowLine2.center.y)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        UIView.animateWithDuration(0.9) {
+            self.yellowLine1.center = CGPointMake(self.yellowLine1.center.x - 700, self.yellowLine1.center.y)
+            self.yellowLine2.center = CGPointMake(self.yellowLine2.center.x + 700, self.yellowLine2.center.y)
+        }
+    }
     
 // ---------------------------------------
     func clickSound() {
@@ -85,8 +104,6 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         // update message
         soundLabelMessage()
         
-        // Check if Working
-        print(soundAnimationOption)
     }
     
 // ---------------------------------------
@@ -180,7 +197,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                     
                     context.deleteObject(result as! NSManagedObject)
                     
-                    print("NSManagedObject has been Deleted")
+                    // print("NSManagedObject has been Deleted")
                     
                     self.pendingLabel.text! = "ALL DELETED!!!"
                 }
@@ -221,7 +238,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 self.resultsLabel.text = "''Random (minus) Previous'' \n Option Selected"
             
         } // end If
-    }
+    } // end Func
     
 // ---------------------------------------
     @IBAction func homeButton(sender: AnyObject) {
@@ -254,17 +271,5 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 

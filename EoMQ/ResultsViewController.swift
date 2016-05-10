@@ -15,8 +15,6 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     @IBOutlet var scrollView: UIScrollView!
     
-    @IBOutlet var cancelVC: UIBarButtonItem!
-    
     @IBOutlet var totQsLabel: UILabel!
     
     @IBOutlet var totCorrectLabel: UILabel!
@@ -31,6 +29,25 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     var audioPlayer : AVAudioPlayer?
     
+    // Yellow line Animation
+    @IBOutlet weak var leftYellowLine: UIImageView!
+    @IBOutlet weak var rightYellowLine: UIImageView!
+    
+// ---------------------------------------
+    override func viewDidLayoutSubviews() {
+        // Lines
+        self.leftYellowLine.center = CGPointMake(self.leftYellowLine.center.x + 700, self.leftYellowLine.center.y)
+        self.rightYellowLine.center = CGPointMake(self.rightYellowLine.center.x - 700, self.rightYellowLine.center.y)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        UIView.animateWithDuration(0.9) {
+            // Lines
+            self.leftYellowLine.center = CGPointMake(self.leftYellowLine.center.x - 700, self.leftYellowLine.center.y)
+            self.rightYellowLine.center = CGPointMake(self.rightYellowLine.center.x + 700, self.rightYellowLine.center.y)
+        }
+    }
 
 // ---------------------------------------
     func clickSound() {
@@ -77,7 +94,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     
 // ---------------------------------------
-    @IBAction func cancelButton(sender: AnyObject) {
+    @IBAction func homeButton(sender: AnyObject) {
         clickSound()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -171,7 +188,7 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
             performSegueWithIdentifier("resultsToHome", sender: self)
             
         } // end IF
-    } // end func
+    } // End FUNC
     
 // ---------------------------------------
     func noNameAlert() {
@@ -217,9 +234,6 @@ class ResultsViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.nameTextLabel.layer.cornerRadius = 8.0
         self.nameTextLabel.attributedPlaceholder = NSAttributedString(string:"Enter name...", attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         
-        // works to Add Image to Bar Button Item
-        let homeImage = UIImage(named: "Home icon 40px")
-        self.cancelVC.setBackgroundImage(homeImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default) // sets image to LT Bar Button Item: "button" = LEFT only
     }
 
     override func didReceiveMemoryWarning() {

@@ -17,7 +17,7 @@ class CustomCell: UITableViewCell {
     
     @IBOutlet var resultsLabelCustom: UILabel!
     
-    
+     
     
     
 // ---------------------------------------
