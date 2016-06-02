@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var resultsList : [Results] = []
     
     @IBOutlet var randomTypeLabel: UILabel!
-
+    
     var audioPlayer : AVAudioPlayer?
     
     // Animation 2 Yellow lines
@@ -87,6 +87,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell1", forIndexPath: indexPath) as! CustomCell
         
         let accessToEntity = self.resultsList[indexPath.row]
+        
         cell.nameLabelCustom.text = accessToEntity.name
         cell.imageViewCustom?.image = UIImage(data: accessToEntity.photo!)
         
@@ -124,6 +125,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let request = NSFetchRequest(entityName: "Results")
         request.returnsObjectsAsFaults = false
+        
+        // ** SORT - High to Low **
+        let sortDescriptor = NSSortDescriptor(key: "percentCorrect", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
         
         do {
             let results = try context.executeFetchRequest(request)
